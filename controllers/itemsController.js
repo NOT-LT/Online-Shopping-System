@@ -8,7 +8,12 @@ maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.renderIndex = async (req, res) => {
   const items = await Item.find({});
-  res.render('items/index', { items, page: { title: 'indexPage' } })
+  const user = await User.findById(req?.user?.id);
+  user.populate('shoppingCart');
+  await user.populate('shoppingCart.item');
+  const cartItems = user.shoppingCart;
+  console.log("cartItems:", cartItems);
+  res.render('items/index', { items,cartItems, page: { title: 'indexPage' } })
 };
 
 module.exports.renderShow = async (req, res) => {

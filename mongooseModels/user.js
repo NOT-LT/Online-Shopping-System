@@ -26,6 +26,16 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false
   },
+  shoppingCart: {
+    type: [{
+      qty: Number,
+      item: {
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+      }
+    }],
+    default: []
+  }
 })
 
 // UserSchema.methods.getViews = async function() {

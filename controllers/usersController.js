@@ -115,3 +115,28 @@ module.exports.renderProfile = async (req, res) => {
   const user = await User.findById(req.params.id);
   res.render('users/profile', { user });
 }
+
+module.exports.getShoppingCart = async (req, res) => {
+  const user = await User.findById(req?.user?.id).populate('shoppingCart');
+  return res.status(200).json({ status: 'OK', shoppingCart: user.shoppingCart });
+}
+
+module.exports.addToShoppingCart = async (req, res) => {
+  const user = await User.findById(req?.user?.id);
+  const itemId = req.body.itemId;
+  if (user.shoppingCart.some(item => item.item == itemId)) {
+    user.shoppingCart.forEach(item => {
+      console.log("here2222: ", item);
+      if (item.item == itemId) {
+        item.qty += 1;
+      }
+    });
+  } else {
+    const item = await Item.findById(itemId);
+    user.shoppingCart.push({ item, qty: 1 });
+
+  }
+  await user.save();
+  req.flash('success', 'Item added to shopping cart');
+  return res.redirect('/items/' + itemId);
+}

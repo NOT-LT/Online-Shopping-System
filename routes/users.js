@@ -6,7 +6,7 @@ const { storeRedirectTo, validateUpdateUserInfo, matchPassword } = require('../m
 const passport = require('passport')
 const User = require('../mongooseModels/user');
 const { registerUser, loginUser, logoutUser, renderRegisterForm, renderLoginForm,
-  getUserDashboard, getUserSettings, postUserSettings, deleteUser } = require('../controllers/usersController');
+  getUserDashboard, getUserSettings, postUserSettings, deleteUser, addToShoppingCart, getShoppingCart } = require('../controllers/usersController');
 const { isLoggedIn } = require('../middleware');
 const { storageProfilePicture } = require('../cloudinary/index')
 const multer = require('multer');
@@ -20,6 +20,9 @@ router.route('/login')
   .get(asyncHandler(renderLoginForm))
   .post(storeRedirectTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), asyncHandler(loginUser))
 
+router.route('/shoppingCart')
+  .get(asyncHandler(getShoppingCart))
+  .post(asyncHandler(addToShoppingCart))
 
 router.get('/dashboard', isLoggedIn, asyncHandler(getUserDashboard));
 

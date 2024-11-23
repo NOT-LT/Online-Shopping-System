@@ -24,4 +24,5 @@ router.route('/:id')
 
 router.get('/:id/edit', isLoggedIn, isAdmin, asyncHandler(renderEdit))
 
+
 module.exports = router;
