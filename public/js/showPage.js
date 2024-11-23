@@ -53,7 +53,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 
-
+  function generateStars(rating) {
+    let stars = '';
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars += '★'; // Filled star
+      } else {
+        stars += '☆'; // Empty star
+      }
+    }
+    return stars;
+  }
 
   const shadowOverlay = document.getElementById('shadowOverlay');
   const shadowStatusDisplay = document.getElementById('shadowStatusDisplay');

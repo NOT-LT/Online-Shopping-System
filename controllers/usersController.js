@@ -26,7 +26,7 @@ module.exports.deleteUser = async (req, res, next) => {
     req.flash('error', 'User not found');
     return res.redirect('/items');
   }
-  if (user.profilePicture?.filename){
+  if (user.profilePicture?.filename) {
     await cloudinary.uploader.destroy(user.profilePicture?.filename, (error, result) => {
       if (error) {
         next(error);
@@ -41,22 +41,22 @@ module.exports.deleteUser = async (req, res, next) => {
     req.flash('success', 'We are sorry to see you leave');
     return res.redirect('/items');
   });
- 
+
 }
 
-module.exports.getUserSettings = async (req, res, next)=> {
+module.exports.getUserSettings = async (req, res, next) => {
   const user = await User.findById(req?.user?.id);
-  res.render('userSettings', { user });   
+  res.render('userSettings', { user });
 }
 
-module.exports.postUserSettings = async (req,res,next) => {
+module.exports.postUserSettings = async (req, res, next) => {
   const user = await User.findById(req?.user?.id);
   user.email = req.body.email;
   user.fullName = req.body.fullName;
   console.log('ctrlUsers - req file: ', req.file);
-  if (req.file){
+  if (req.file) {
     // console.log('ctrlUsers - req files: ', req.files);
-    if (user?.profilePicture?.filename){
+    if (user?.profilePicture?.filename) {
       await cloudinary.uploader.destroy(user.profilePicture?.filename, (error, result) => {
         if (error) {
           next(error);
@@ -124,19 +124,26 @@ module.exports.getShoppingCart = async (req, res) => {
 module.exports.addToShoppingCart = async (req, res) => {
   const user = await User.findById(req?.user?.id);
   const itemId = req.body.itemId;
-  if (user.shoppingCart.some(item => item.item == itemId)) {
-    user.shoppingCart.forEach(item => {
-      console.log("here2222: ", item);
-      if (item.item == itemId) {
-        item.qty += 1;
-      }
-    });
-  } else {
-    const item = await Item.findById(itemId);
-    user.shoppingCart.push({ item, qty: 1 });
+  const itemColor = req.body.itemColor;
+    if (user.shoppingCart.some(item =>  {item.item == itemId && item.color == itemColor})) {
+      user.shoppingCart.forEach(item => {
+        if (item.item == itemId) {
+          item.qty += 1;
+        }
+      });
+    } else {
+      const item = await Item.findById(itemId);
+      user.shoppingCart.push({ item, qty: 1, color: itemColor });
+    }
 
-  }
+
   await user.save();
   req.flash('success', 'Item added to shopping cart');
   return res.redirect('/items/' + itemId);
 }
+
+module.exports.renderCheckout = async (req, res) => {
+  const user = await User.findById(req?.user?.id).populate('shoppingCart.item');
+  const shoppingCart = user.shoppingCart;
+  return res.render('checkout', { shoppingCart });
+};
