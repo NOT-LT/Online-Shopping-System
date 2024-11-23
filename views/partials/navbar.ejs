@@ -75,10 +75,15 @@
                   <% cartItems.forEach(item=> { %>
                     <div class="flex justify-between px-4 py-2 border-t border-b border-gray-300 dark:border-gray-600">
                       <div class="flex flex-row items-center gap-x-[6px]">
-                        <img src="<%= item.item.images[0].url %>" alt="img" class="h-12 w-12 object-cover rounded-sm">
-                        <span class="text-sm text-gray-900 dark:text-gray-300">
-                          <%= item.item.title %>
-                        </span>
+                        <img src="<%= item.item.images[0].url %>" alt="img" class="h-14 w-14 object-cover rounded-sm">
+                        <div>
+                          <p class="text-sm text-gray-900 dark:text-gray-300">
+                            <%= item.item.title %>
+                          </p>
+                          <p class="text-green-900" style="font-size: 12px;">
+                            <%= item.item.price %>
+                        </p>
+                        </div>
                         <span class="h-4 w-4 rounded-full" style="background-color: <%= item.item.color %>;"></span>
                       </div>
               
