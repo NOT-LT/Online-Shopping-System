@@ -1,0 +1,46 @@
+<%- layout('layout/boilerplate') %>
+  <div class="px-4 md:px-6 lg:px-2">
+    <div style="z-index: 9999;">
+      <%- include('../partials/searchBar') %>
+    </div>
+    <div id="map" class="overflow-hidden w-full rounded-lg"></div>
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" style="z-index: 2;">
+      <% for (let item of items) { %>
+        <section class="rounded-lg w-full max-w-full bg-white">
+
+          <div
+            class="relative overflow-hidden shadow-lg rounded-lg group transition-all duration-500 hover:shadow-2xl card">
+            <div onclick="window.location.href='/items/<%= item._id %>'" class="cursor-pointer flex flex-col h-full">
+              <div class="aspect-ratio-container">
+                <img src="<%= item?.images[0]?.thumbnail2 %>"
+                  class="object-cover object-center transition-transform duration-300 group-hover:scale-[1.05]">
+                <div class="overlay absolute inset-0 opacity-80 group-hover:opacity-30 transition-opacity duration-300">
+                </div>
+              </div>
+              <div class="bg-white p-4 card-content flex-grow">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-800 text-lg font-semibold">
+                    <%= item?.price %>
+                  </span>
+                </div>
+                <span class="text-gray-700 mb-1">
+                  <%= item?.title %>
+                </span>
+                <p class="text-gray-600 mt-1 description">
+                  <%if ( item.description) { %>
+                    <%= item.description %>
+                      <% } else {%>
+                        No description available.
+                        <% }%>
+                </p>
+
+                
+       
+
+              </div>
+            </div>
+          </div>
+        </section>
+        <% } %>
+    </div>
+  </div>

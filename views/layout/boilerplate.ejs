@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style2.css" rel="stylesheet">
+    <title>Document</title>
+  </head>
+
+  <body class=" flex flex-col min-h-screen min-w-full">
+    <% if (page.title !=='login' && page.title !=='register' ) { %>
+      <%- include('../partials/navbar') -%>
+        <% } %>
+          <%- include('../partials/flashAlert') -%>
+
+            <div
+              class="flex-1 flex justify-center bg-white <%= page.title === 'showPage' ? 'py-0 lg:py-4' : 'py-4' %>"> 
+        <div class=" mx-auto w-full max-size lg:px-10">
+              <%- body %>
+            </div>
+            </div>
+
+            <%- include('../partials/footer') -%>
+
+  </body>
+
+
+  <script src="../../../../../js/smoothScroll.js"></script>
+
+
+
+</html>

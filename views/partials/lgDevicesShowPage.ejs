@@ -1,0 +1,133 @@
+<section class="hidden md:flex flex-row w-full justify-between items-center mt-7">
+  <div class="vertical-hr"></div>
+  <div class="flex flex-col items-center justify-center px-[2px]">
+    <span class="flex items-center space-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 48 48">
+        <title>category</title>
+        <g id="Layer_2" data-name="Layer 2">
+          <g id="invisible_box" data-name="invisible box">
+            <rect width="48" height="48" fill="none"/>
+          </g>
+          <g id="icons_Q2" data-name="icons Q2">
+            <path d="M24,7.7,29.3,16H18.6L24,7.7M24,2a2.1,2.1,0,0,0-1.7,1L13.2,17a2.3,2.3,0,0,0,0,2,1.9,1.9,0,0,0,1.7,1H33a2.1,2.1,0,0,0,1.7-1,1.8,1.8,0,0,0,0-2l-9-14A1.9,1.9,0,0,0,24,2Z"/>
+            <path d="M43,43H29a2,2,0,0,1-2-2V27a2,2,0,0,1,2-2H43a2,2,0,0,1,2,2V41A2,2,0,0,1,43,43ZM31,39H41V29H31Z"/>
+            <path d="M13,28a6,6,0,1,1-6,6,6,6,0,0,1,6-6m0-4A10,10,0,1,0,23,34,10,10,0,0,0,13,24Z"/>
+          </g>
+        </g>
+      </svg>
+      <span>Category</span>
+    </span>
+    <span>
+      <%= item.itemCategory %>
+    </span>
+  </div>
+  <div class="vertical-hr"></div>
+
+  <div class="flex flex-col justify-center items-center  px-[2px]">
+    <span class="flex items-center space-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 21 21">
+
+        <g fill="none" fill-rule="evenodd" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(1.228 .814)">
+        
+        <path d="m14.279 13.701 4-4-4-4.015"/>
+        
+        <path d="m4.279 13.701-4-4 4-4.015"/>
+        
+        <path d="m15.636 3.322-12.728 12.728" transform="matrix(.70710678 .70710678 -.70710678 .70710678 9.564742 -3.71933)"/>
+        
+        </g>
+        
+        </svg>
+      <span>Width</span>
+    </span>
+    <span>
+      <%= item.width %>
+    </span>
+  </div>
+  <div class="vertical-hr"></div>
+
+  <div class="flex flex-col justify-center items-center  px-[2px]">
+    <span class="flex items-center space-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 21 21">
+        <g fill="none" fill-rule="evenodd" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(6.314 1.314)">
+        <path d="m8.205 4.183-4-4-4.015 4"/>
+        <path d="m8.205 14.183-4 4-4.015-4"/> 
+        <path d="m4.19.19v18"/> 
+        </g>  
+        </svg>
+      <span>Height</span>
+    </span>
+    <span>
+      <%= item.height %>
+    </span>
+  </div>
+  <div class="vertical-hr"></div>
+
+  <div class="flex flex-col justify-center items-center  px-[2px]">
+    <span class="flex items-center space-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L15 5H9L12 2ZM12 22L9 19H15L12 22ZM2 12L5 15V9L2 12ZM22 12L19 9V15L22 12Z" fill="currentColor"/>
+      </svg>
+      <span class="hidden xl:block">Depth</span>
+    </span>
+    <span>
+      <%= item.depth %>
+    </span>
+  </div>
+  <div class="vertical-hr"></div>
+
+  <div class="flex flex-col justify-center items-center  px-[2px]">
+    <span class="flex items-center space-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"  viewBox="0 0 24 24" fill="none">
+        <path d="M12.0002 6L11.0064 9M16.5 6C17.8978 6 18.5967 6 19.1481 6.22836C19.8831 6.53284 20.4672 7.11687 20.7716 7.85195C21 8.40326 21 9.10218 21 10.5V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V10.5C3 9.10218 3 8.40326 3.22836 7.85195C3.53284 7.11687 4.11687 6.53284 4.85195 6.22836C5.40326 6 6.10218 6 7.5 6M10 17H14M10.5415 3H13.4588C14.5397 3 15.0802 3 15.4802 3.18541C16.0136 3.43262 16.4112 3.90199 16.5674 4.46878C16.6845 4.89387 16.5957 5.42698 16.418 6.4932C16.2862 7.28376 16.2203 7.67904 16.0449 7.98778C15.8111 8.39944 15.4388 8.71481 14.9943 8.87778C14.661 9 14.2602 9 13.4588 9H10.5415C9.74006 9 9.33933 9 9.00596 8.87778C8.56146 8.71481 8.18918 8.39944 7.95536 7.98778C7.77999 7.67904 7.71411 7.28376 7.58235 6.4932C7.40465 5.42698 7.3158 4.89387 7.43291 4.46878C7.58906 3.90199 7.98669 3.43262 8.52009 3.18541C8.92014 3 9.46061 3 10.5415 3Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      <span class="hidden xl:block">Weight</span>
+    </span>
+    <span>
+      <%= item.weight %>
+    </span>
+  </div>
+  <div class="vertical-hr"></div>
+
+  <div class="flex flex-col justify-center  items-center  px-[2px]">
+    <span class="flex items-center space-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 48 48">
+        <g id="Layer_2" data-name="Layer 2">
+          <g id="invisible_box" data-name="invisible box">
+            <rect width="48" height="48" fill="none"/>
+          </g>
+          <g id="Layer_7" data-name="Layer 7">
+            <g>
+              <path d="M17,31H31a2,2,0,0,0,2-2V19a2,2,0,0,0-2-2H17a2,2,0,0,0-2,2V29A2,2,0,0,0,17,31Zm2-10H29v6H19Z"/>
+              <path d="M44,22H41V13a2,2,0,0,0-2-2H26V4a2,2,0,0,0-4,0v7H9a2,2,0,0,0-2,2v9H4a2,2,0,0,0,0,4H7v9a2,2,0,0,0,2,2H22v7a2,2,0,0,0,4,0V37H39a2,2,0,0,0,2-2V26h3a2,2,0,0,0,0-4ZM37,33H11V15H37Z"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <span>
+        Material
+      </span>
+    </span>
+    <span>
+      <%= item.material %>
+    </span>
+  </div>
+  <div class="vertical-hr"></div>
+
+  <div class="flex flex-col justify-center items-center  px-[2px]">
+    <span class="flex items-center space-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M18 21V22C18.5523 22 19 21.5523 19 21H18ZM6 21H5C5 21.5523 5.44772 22 6 22V21ZM17.454 3.10899L17 4L17.454 3.10899ZM17.891 3.54601L17 4L17.891 3.54601ZM6.54601 3.10899L7 4L6.54601 3.10899ZM6.10899 3.54601L7 4L6.10899 3.54601ZM9 6C8.44772 6 8 6.44772 8 7C8 7.55228 8.44772 8 9 8V6ZM10 8C10.5523 8 11 7.55228 11 7C11 6.44772 10.5523 6 10 6V8ZM9 9C8.44772 9 8 9.44772 8 10C8 10.5523 8.44772 11 9 11V9ZM10 11C10.5523 11 11 10.5523 11 10C11 9.44772 10.5523 9 10 9V11ZM14 9C13.4477 9 13 9.44772 13 10C13 10.5523 13.4477 11 14 11V9ZM15 11C15.5523 11 16 10.5523 16 10C16 9.44772 15.5523 9 15 9V11ZM14 12C13.4477 12 13 12.4477 13 13C13 13.5523 13.4477 14 14 14V12ZM15 14C15.5523 14 16 13.5523 16 13C16 12.4477 15.5523 12 15 12V14ZM9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14V12ZM10 14C10.5523 14 11 13.5523 11 13C11 12.4477 10.5523 12 10 12V14ZM14 6C13.4477 6 13 6.44772 13 7C13 7.55228 13.4477 8 14 8V6ZM15 8C15.5523 8 16 7.55228 16 7C16 6.44772 15.5523 6 15 6V8ZM7.6 4H16.4V2H7.6V4ZM17 4.6V21H19V4.6H17ZM18 20H6V22H18V20ZM7 21V4.6H5V21H7ZM16.4 4C16.6965 4 16.8588 4.00078 16.9754 4.0103C17.0803 4.01887 17.0575 4.0293 17 4L17.908 2.21799C17.6366 2.07969 17.3668 2.03562 17.1382 2.01695C16.9213 1.99922 16.6635 2 16.4 2V4ZM19 4.6C19 4.33647 19.0008 4.07869 18.9831 3.86177C18.9644 3.63318 18.9203 3.36344 18.782 3.09202L17 4C16.9707 3.94249 16.9811 3.91972 16.9897 4.02463C16.9992 4.14122 17 4.30347 17 4.6H19ZM17 4L18.782 3.09202C18.5903 2.7157 18.2843 2.40973 17.908 2.21799L17 4ZM7.6 2C7.33647 2 7.07869 1.99922 6.86177 2.01695C6.63318 2.03562 6.36344 2.07969 6.09202 2.21799L7 4C6.94249 4.0293 6.91972 4.01887 7.02463 4.0103C7.14122 4.00078 7.30347 4 7.6 4V2ZM7 4.6C7 4.30347 7.00078 4.14122 7.0103 4.02463C7.01887 3.91972 7.0293 3.94249 7 4L5.21799 3.09202C5.07969 3.36344 5.03562 3.63318 5.01695 3.86177C4.99922 4.07869 5 4.33647 5 4.6H7ZM6.09202 2.21799C5.71569 2.40973 5.40973 2.71569 5.21799 3.09202L7 4L6.09202 2.21799ZM9 8H10V6H9V8ZM9 11H10V9H9V11ZM14 11H15V9H14V11ZM14 14H15V12H14V14ZM9 14H10V12H9V14ZM14 8H15V6H14V8ZM13 18V21H15V18H13ZM11 21V18H9V21H11ZM12 17C12.5523 17 13 17.4477 13 18H15C15 16.3431 13.6569 15 12 15V17ZM12 15C10.3431 15 9 16.3431 9 18H11C11 17.4477 11.4477 17 12 17V15Z"
+          fill="#000000" />
+      </svg>
+      <span>
+        Brand
+      </span>
+    </span>
+    <span>
+      <%= item.brand %>
+    </span>
+  </div>
+  <div class="vertical-hr"></div>
+</section>

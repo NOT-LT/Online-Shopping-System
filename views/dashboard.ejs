@@ -1,0 +1,395 @@
+<%- layout('layout/boilerplate') %>
+
+  <div class="px-4 md:px-6 lg:px-2">
+    <h1 class="text-2xl font-bold mb-5">My Dashboard</h1>
+    <section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white shadow-md rounded-lg p-6 border">
+          <div class="bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-900">
+            Listed Properties
+          </div>
+          <div class="text-3xl font-bold mt-2 text-gray-800"><%= properties.length %></div>
+          <div class="text-green-600 text-sm mt-1">+3 from last month</div>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6 border">
+          <div class="bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-900">
+            Total Views of Properties
+          </div>
+          <div class="text-3xl font-bold mt-2 text-gray-800"><%= views %></div>
+          <div class="text-green-600 text-sm mt-1">+20% from last month</div>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6 border">
+          <div class="bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-900">
+            Inquiries
+          </div>
+          <div class="text-3xl font-bold mt-2 text-gray-800"><%= inquiries?.length %></div>
+          <a class="text-green-600 text-sm mt-1">+10 from last month</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+
+      <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+        <div
+          class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
+          <div class="w-max rounded-lg bg-gray-900 p-5 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" aria-hidden="true" class="h-6 w-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M1.5 12s3.75-7.5 10.5-7.5S22.5 12 22.5 12s-3.75 7.5-10.5 7.5S1.5 12 1.5 12z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z" />
+            </svg>
+          </div>
+          <div>
+            <h6
+              class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
+              Total views of your listed properties
+            </h6>
+            <p class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
+              Inspect your listed properties and the number of views they have received.
+            </p>
+          </div>
+        </div>
+        <div class="px-2 pb-0">
+          <div id="chart"></div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+      <script>
+        const chartConfig = {
+          series: [
+            {
+              name: "Views",
+              data: [50, 220, 100, 70, 200, 350, 370, 400, 500],
+            },
+          ],
+          chart: {
+            type: "line",
+            height: 240,
+            toolbar: {
+              show: false,
+            },
+          },
+          title: {
+            show: "",
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          colors: ["#020617"],
+          stroke: {
+            lineCap: "round",
+            curve: "smooth",
+          },
+          markers: {
+            size: 0,
+          },
+          xaxis: {
+            axisTicks: {
+              show: false,
+            },
+            axisBorder: {
+              show: false,
+            },
+            labels: {
+              style: {
+                colors: "#616161",
+                fontSize: "12px",
+                fontFamily: "inherit",
+                fontWeight: 400,
+              },
+            },
+            categories: [
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec",
+            ],
+          },
+          yaxis: {
+            labels: {
+              style: {
+                colors: "#616161",
+                fontSize: "12px",
+                fontFamily: "inherit",
+                fontWeight: 400,
+              },
+            },
+          },
+          grid: {
+            show: true,
+            borderColor: "#dddddd",
+            strokeDashArray: 5,
+            xaxis: {
+              lines: {
+                show: true,
+              },
+            },
+            padding: {
+              top: 5,
+              right: 20,
+            },
+          },
+          fill: {
+            opacity: 0.8,
+          },
+          tooltip: {
+            theme: "dark",
+          },
+        };
+
+        const chart = new ApexCharts(document.querySelector("#chart"), chartConfig);
+
+        chart.render();
+      </script>
+
+    </section>
+
+    <section>
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-[276px] overflow-y-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-white uppercase bg-[#0d1727ee]">
+            <tr class="h-[65px]">
+              <th scope="col" class="px-2 py-3 sm:px-6">Item Title</th>
+              <th scope="col" class="px-2 py-3 sm:px-6 hidden md:table-cell">Type</th>
+              <th scope="col" class="px-2 py-3 sm:px-6">Inquiries</th>
+              <th scope="col" class="px-2 py-3 sm:px-6">Views</th>
+              <th scope="col" class="px-2 py-3 sm:px-6 hidden md:table-cell">Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (p of properties) { %>
+              <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <th scope="row" class="px-2 py-4 sm:px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <a href="/properties/<%=p?._id%>" class="text-blue-600 dark:text-blue-500 hover:underline"><%= p?.title %></a>
+                </th>
+                <td class="px-2 py-4 sm:px-6 hidden md:table-cell"><%= p?.itemType %></td>
+                <td class="px-2 py-4 sm:px-6">
+                  <a href="/properties/<%=p?._id%>?sct=view-inquiries-section" class="text-blue-600 dark:text-blue-500 hover:underline"><%=p?.inquiries?.length%></a>
+                </td>
+                <td class="px-2 py-4 sm:px-6 "><%=p?.views%></td>
+                <td class="px-2 py-4 sm:px-6 hidden md:table-cell"><%= new Date(p?.postDate).toLocaleString('en-US') %></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class=" bg-white py-6 w-full">
+      <h1 class="text-2xl font-bold mb-4">Your Listed Properties</h1>
+      <div class="relative mb-2 pt-12">
+        <div id="arrowControllers" class="absolute right-2 top-0 z-10 gap-x-6">
+          <!-- Left Arrow -->
+          <button id="left-arrow" class="p-2 z-10">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gradient-left" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#121212">
+                    <animate attributeName="stop-color" values="#121212;#132733d9;#121212" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="100%" stop-color="#132733d9">
+                    <animate attributeName="stop-color" values="#132733d9;#121212;#132733d9" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                </linearGradient>
+              </defs>
+              <path
+                d="M4.205 8.72805L12.205 3.72805C13.2041 3.10363 14.5 3.82189 14.5 5.00004V15C14.5 16.1782 13.2041 16.8965 12.205 16.272L4.205 11.272C3.265 10.6845 3.265 9.31555 4.205 8.72805Z"
+                stroke="url(#gradient-left)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                fill="url(#gradient-left)" />
+            </svg>
+          </button>
+
+          <!-- Right Arrow -->
+          <button id="right-arrow" class="p-2 z-10">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gradient-right" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#121212">
+                    <animate attributeName="stop-color" values="#121212;#132733d9;#121212" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="100%" stop-color="#132733d9">
+                    <animate attributeName="stop-color" values="#132733d9;#121212;#132733d9" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                </linearGradient>
+              </defs>
+              <path
+                d="M15.795 11.272L7.795 16.272C6.79593 16.8964 5.5 16.1782 5.5 15L5.5 5.00002C5.5 3.82186 6.79593 3.1036 7.795 3.72802L15.795 8.72802C16.735 9.31552 16.735 10.6845 15.795 11.272Z"
+                stroke="url(#gradient-right)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                fill="url(#gradient-right)" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="flex flex-row gap-x-4 overflow-x-auto scroll-smooth py-2 " id="item-list">
+
+          <% for (let p of properties) { %>
+            <section class="rounded-lg w-80 flex-shrink-0 bg-white">
+
+
+              <div
+                class="relative overflow-hidden shadow-lg rounded-lg group transition-all duration-300 hover:shadow-2xl card">
+
+                <div onclick="window.location.href='/properties/<%= p._id %>'"
+                  class="cursor-pointer flex flex-col h-full">
+                  <div class="aspect-ratio-container">
+                    <img src="<%= p?.images[0]?.thumbnail2 %>"
+                      class="object-cover object-center transition-transform duration-300 group-hover:scale-[1.05]">
+                    <div
+                      class="overlay absolute inset-0 opacity-80 group-hover:opacity-30 transition-opacity duration-300">
+                    </div>
+                    <div
+                      class="absolute top-2 left-2 bg-[#2fc66c] bg-opacity-90 rounded-full flex items-center justify-center p-[0.15rem] z-20">
+                      <a href="https://wa.me/<%= p?.contact %>">
+                        <svg fill="#fff" height="30px" width="30px" version="1.1" id="Layer_1"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          viewBox="0 0 308 308" xml:space="preserve">
+                          <g>
+                            <path id="XMLID_469_" d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156
+                     c-3.032,0-5.579,1.511-7.563,4.479c-2.243,3.334-9.033,11.271-11.131,13.642c-0.274,0.313-0.648,0.687-0.872,0.687
+                     c-0.201,0-3.676-1.431-4.728-1.888c-24.087-10.463-42.37-35.624-44.877-39.867c-0.358-0.61-0.373-0.887-0.376-0.887
+                     c0.088-0.323,0.898-1.135,1.316-1.554c1.223-1.21,2.548-2.805,3.83-4.348c0.607-0.731,1.215-1.463,1.812-2.153
+                     c1.86-2.164,2.688-3.844,3.648-5.79l0.503-1.011c2.344-4.657,0.342-8.587-0.305-9.856c-0.531-1.062-10.012-23.944-11.02-26.348
+                     c-2.424-5.801-5.627-8.502-10.078-8.502c-0.413,0,0,0-1.732,0.073c-2.109,0.089-13.594,1.601-18.672,4.802
+                     c-5.385,3.395-14.495,14.217-14.495,33.249c0,17.129,10.87,33.302,15.537,39.453c0.116,0.155,0.329,0.47,0.638,0.922
+                     c17.873,26.102,40.154,45.446,62.741,54.469c21.745,8.686,32.042,9.69,37.896,9.69c0.001,0,0.001,0,0.001,0
+                     c2.46,0,4.429-0.193,6.166-0.364l1.102-0.105c7.512-0.666,24.02-9.22,27.775-19.655c2.958-8.219,3.738-17.199,1.77-20.458
+                     C233.168,179.508,230.845,178.393,227.904,176.981z" />
+                            <path id="XMLID_470_" d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716
+                     c-0.484,1.429-0.124,3.009,0.933,4.085C1.908,307.58,2.943,308,4,308c0.405,0,0.813-0.061,1.211-0.188l79.92-25.396
+                     c21.87,11.685,46.588,17.853,71.604,17.853C240.143,300.27,308,232.923,308,150.143C308,67.354,240.143,0,156.734,0z
+                     M156.734,268.994c-23.539,0-46.338-6.797-65.936-19.657c-0.659-0.433-1.424-0.655-2.194-0.655c-0.407,0-0.815,0.062-1.212,0.188
+                     l-40.035,12.726l12.924-38.129c0.418-1.234,0.209-2.595-0.561-3.647c-14.924-20.392-22.813-44.485-22.813-69.677
+                     c0-65.543,53.754-118.867,119.826-118.867c66.064,0,119.812,53.324,119.812,118.867
+                     C276.546,215.678,222.799,268.994,156.734,268.994z" />
+                          </g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="bg-white p-4 card-content flex-grow">
+                    <div class="flex justify-between items-center">
+                      <span class="text-gray-800 text-lg font-semibold">
+                        <%= p?.price %>
+                      </span>
+                      <span class="bg-gray-200 text-gray-700 text-xs px-4 py-1 rounded-full">
+                        <%= p?.listingType %>
+                      </span>
+                    </div>
+                    <span class="text-gray-700 mb-1">
+                      <%= p?.title %>
+                    </span>
+                    <p class="text-gray-600 mt-1 description">
+                      <%if ( p.description) { %>
+                        <%= p.description %>
+                          <% } else {%>
+                            No description available.
+                            <% }%>
+                    </p>
+
+                    <div class="flex items-center space-x-1 mt-4 text-gray-500">
+                      <svg width="20px" height="20px" viewbox="0 0 24 24" fill="currentcolor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12 10c-1.104 0-2-.896-2-2s.896-2 2-2 2 .896 2 2-.896 2-2 2m0-5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3m-7 2.602c0-3.517 3.271-6.602 7-6.602s7 3.085 7 6.602c0 3.455-2.563 7.543-7 14.527-4.489-7.073-7-11.072-7-14.527m7-7.602c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602" />
+                      </svg>
+                      <p>
+                        <%= p?.location %>
+                      </p>
+                    </div>
+                    <div class="flex space-x-3 items-center mt-4 text-gray-500">
+                      <div class="flex items-center space-x-1">
+                        <svg fill="currentcolor" height="20px" width="20px" version="1.1" id="Layer_1"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          viewbox="0 0 511.999 511.999" xml:space="preserve">
+                          <g>
+                            <g>
+                              <path d="M494.565,208.205c-6.121,0-11.251,3.141-14.387,7.894l-24.288-36.256v-50.833c0-29.541-24.435-53.028-53.974-53.028
+                       h110.082c-29.539,0-53.974,23.488-53.974,53.027v50.833l-24.338,36.256c-3.136-4.753-8.317-7.894-14.438-7.894
+                       C7.65,208.203,0,216.054,0,225.738v155.883c-0.001,9.685,7.648,16.991,17.333,16.991h13.058v19.872
+                       c0,9.684,7.851,17.534,17.534,17.534s17.534-7.851,17.534-17.534v-19.872h381.078v19.872c0,9.684,7.851,17.534,17.534,17.534
+                       s17.534-7.851,17.534-17.534v-19.872h13.058c9.684,0,17.334-7.306,17.334-16.99V225.739
+                       C511.999,216.055,504.249,208.205,494.565,208.205z M91.177,129.008c0-10.203,8.703-17.959,18.905-17.959h291.832
+                       c10.203,0,18.905,7.756,18.905,17.959v38.151h-15.37c0.103-0.767,0.174-1.543,0.174-2.338c0-9.684-7.851-17.534-17.534-17.534
+                       h123.908c-9.684,0-17.534,7.851-17.534,17.534c0,0.795,0.071,1.571,0.174,2.338H91.177V129.008z M83.855,201.941
+                       c0.866,0.132,1.744,0.286,2.647,0.286h341.79l14.329,21.041h69.376L83.855,201.941z M476.93,363.543h35.067V258.337h476.93
+                       V363.543z" />
+                            </g>
+                          </g>
+                        </svg>
+                        <p>
+                          <%=p?.bedrooms%>
+                        </p>
+                      </div>
+                      <span>&middot;</span>
+                      <div class="flex items-center space-x-1">
+                        <svg width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="currentColor"
+                            d="M464,280H80V100A51.258,51.258,0,0,1,95.113,63.515l.4-.4a51.691,51.691,0,0,1,58.6-10.162,79.1,79.1,0,0,0,11.778,96.627l10.951,10.951-20.157,20.158,22.626,22.626,20.157-20.157h0L311.157,71.471h0l20.157-20.157L308.687,28.687,288.529,48.844,277.578,37.893a79.086,79.086,0,0,0-100.929-8.976A83.61,83.61,0,0,0,72.887,40.485l-.4.4A83.054,83.054,0,0,0,48,100V280H16v32H48v30.7a23.95,23.95,0,0,0,1.232,7.589L79,439.589A23.969,23.969,0,0,0,101.766,456h12.9L103,496h33.333L148,456H356.1l12,40H401.5l-12-40h20.73A23.969,23.969,0,0,0,433,439.589l29.766-89.3A23.982,23.982,0,0,0,464,342.7V312h32V280ZM188.52,60.52a47.025,47.025,0,0,1,66.431,0L265.9,71.471,199.471,137.9,188.52,126.951A47.027,47.027,0,0,1,188.52,60.52ZM432,341.4,404.468,424H107.532L80,341.4V312H432Z"
+                            class="ci-primary" />
+                        </svg>
+                        <p>
+                          <%=p?.bathrooms%>
+                        </p>
+                      </div>
+                      <span>&middot;</span>
+                      <div class="flex items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="20px" height="20px"
+                          viewbox="0 0 512 512" preserveaspectratio="xMidYMid meet">
+
+                          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentcolor"
+                            stroke="currentcolor">
+                            <path
+                              d="M867 4588 c-9 -7 -82 -100 -162 -207 -102 -137 -145 -202 -145 -221 0 -19 43 -84 145 -221 80 -107 153 -200 162 -206 27 -21 72 -15 98 12 44 43 35 69 -70 208 l-95 127 1236 0 c988 0 1235 -3 1227 -12 -5 -7 -46 -59 -91 -115 -45 -56 -87 -113 -93 -126 -23 -51 38 -117 95 -103 38 9 346 397 346 436 0 38 -308 427 -345 436 -52 13 -113 -41 -101 -90 3 -13 45 -73 92 -132 48 -60 92 -115 97 -121 8 -10 -239 -13 -1227 -13 l-1236 0 95 127 c105 139 114 165 70 208 -26 27 -71 33 -98 13z" />
+                            <path
+                              d="M655 3486 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -654 -3 -1414 3 -1378 3 -1382 24 -1409 11 -15 33 -37 48 -48 27 -21 29 -21 1416 -21 1387 0 1389 0 1416 21 15 11 37 33 48 48 21 27 21 29 21 1436 0 1407 0 1409 -21 1436 -11 15 -33 37 -48 48 -27 21 -31 21 -1404 23 -1130 2 -1382 0 -1407 -11z m2725 -1496 l0 -1350 -1330 0 -1330 0 0 1350 0 1350 1330 0 1330 0 0 -1350z" />
+                            <path
+                              d="M4012 3280 c-146 -116 -204 -168 -208 -187 -14 -56 48 -113 101 -93 14 5 72 47 128 92 56 45 108 86 115 91 9 8 12 -239 12 -1227 l0 -1236 -127 95 c-139 105 -165 114 -208 70 -27 -26 -33 -71 -12 -98 6 -9 99 -82 206 -162 137 -102 202 -145 221 -145 19 0 84 43 221 145 107 80 200 153 207 162 20 27 14 72 -13 98 -43 44 -69 35 -208 -70 l-127 -95 0 1236 c0 988 3 1235 13 1227 6 -5 58 -46 114 -91 56 -45 114 -87 128 -92 53 -20 115 37 101 94 -10 39 -396 346 -435 346 -21 0 -79 -40 -229 -160z" />
+                          </g>
+                        </svg>
+                        <p>
+                          <%= p?.areaInSqft %> sqft
+                        </p>
+                      </div>
+
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </section>
+            <% } %>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <script>
+    document.getElementById('left-arrow').addEventListener('click', function () {
+      document.getElementById('item-list').scrollBy({
+        left: -250,
+        behavior: 'smooth'
+      });
+    });
+
+    document.getElementById('right-arrow').addEventListener('click', function () {
+      document.getElementById('item-list').scrollBy({
+        left: 250,
+        behavior: 'smooth'
+      });
+    });
+  </script>

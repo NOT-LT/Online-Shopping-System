@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nestify</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style2.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-white text-gray-800">
+
+
+    <div class="bg-gradient-to-b from-[#f8fafc] to-[#e9eff5]">
+      <%- include('./partials/landingNavbar') -%>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      class="relative bg-gradient-to-b from-[#e9eff5] via-[#d4e2ed] to-[#f4faff] text-black pt-16 pb-8 2xl:px-[19rem] xl:px-[7rem] lg:px-[4.5rem] px-[1.5rem]">
+
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">Find Real Estate and Get Your Dream Space</h1>
+          <p class="mt-4 text-lg">Discover stunning items that fit your lifestyle and budget. Whether you’re
+            buying, renting, or investing, we’re here to help you every step of the way.
+
+          </p>
+
+
+
+          <div class="group relative flex justify-start items-center text-zinc-600 text-sm font-bold mt-6"
+            onclick="window.location.href='/items'">
+            <div
+              class="absolute opacity-0 group-hover:opacity-100 group-hover:-translate-y-[150%] -translate-y-[300%] duration-500 group-hover:delay-500 skew-y-[20deg] group-hover:skew-y-0 shadow-md">
+
+              <div
+                class="shadow-md bg-slate-300 absolute top-0 translate-y-1/2 left-1/2 translate-x-full rotate-45 p-1">
+              </div>
+              <div
+                class="rounded-md bg-white group-hover:opacity-0 group-hover:scale-[115%] group-hover:delay-700 duration-500 w-full h-full absolute top-0 left-0">
+                <div
+                  class="border-b border-r border-white bg-white absolute bottom-0 translate-y-1/2 left-1/2 translate-x-full rotate-45 p-1">
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="shadow-md flex items-center group-hover:gap-2 bg-gradient-to-br from-slate-200 to-slate-300 p-3 rounded-full cursor-pointer duration-300">
+              <svg fill="none" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"
+                class="fill-zinc-600">
+                <path stroke-linejoin="round" stroke-linecap="round"
+                  d="M15.4306 7.70172C7.55045 7.99826 3.43929 15.232 2.17021 19.3956C2.07701 19.7014 2.31139 20 2.63107 20C2.82491 20 3.0008 19.8828 3.08334 19.7074C6.04179 13.4211 12.7066 12.3152 15.514 12.5639C15.7583 12.5856 15.9333 12.7956 15.9333 13.0409V15.1247C15.9333 15.5667 16.4648 15.7913 16.7818 15.4833L20.6976 11.6784C20.8723 11.5087 20.8993 11.2378 20.7615 11.037L16.8456 5.32965C16.5677 4.92457 15.9333 5.12126 15.9333 5.61253V7.19231C15.9333 7.46845 15.7065 7.69133 15.4306 7.70172Z">
+                </path>
+              </svg><span class="text-[0px] group-hover:text-sm duration-300">Discover </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Section with Floating Effect -->
+        <div class="animate-float">
+          <div
+            class="relative overflow-hidden rounded-3xl hover:scale-[1.02] hover:rotate-[-0.5deg] transition-transform duration-500"
+            style="filter: drop-shadow(0 3px 25px #314B58);">
+            <img
+              src="https://m.ahstatic.com/is/image/accorhotels/aja_p_7021-62?qlt=82&wid=575&ts=1710775362483&dpr=on,2.625"
+              alt="House" class="w-full h-auto object-cover">
+            <div class="absolute top-4 left-4 bg-gray-800/70 text-white p-4 rounded-lg backdrop-blur-sm">
+              <span class="block text-lg font-bold">Modern Villa ✨ </span>
+              <span class="block text-sm">📍 Manama, Bahrain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+
+    <!-- Search Bar -->
+    <div class="bg-gradient-to-b from-[#f4faff] to-[#f8fcff] 2xl:px-[19rem] xl:px-[7rem] lg:px-[4.5rem] px-[1rem]">
+      <%- include('partials/searchBar') %>
+
+    </div>
+
+
+
+    <!-- About Nestify Section -->
+    <section class="py-16 bg-gradient-to-b from-[#f8fcff] to-[#ffffff] 2xl:px-[19rem] xl:px-[7rem] lg:px-[5rem]  mb-8">
+      <div class="text-center p-6">
+        <div class="inline-block bg-[#232A31] text-white px-4 py-1 rounded-full text-sm mb-4">
+          Everything you need
+        </div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">
+          Built for Community, Designed for Freedom
+        </h1>
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">
+          No Fees, Just Connections
+        </h2>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Online Shopping System empowers a seamless, fast and secure shopping
+          experience for users.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- Why Nestify -->
+    <section
+      class="relative bg-gradient-to-b from-[#121212]  to-[#101f28] animate-gradient3 text-black  py-14 2xl:px-[19rem] xl:px-[7rem] lg:px-[4.5rem] px-[1.25rem]">
+
+      <div class="container mx-auto text-center">
+        <div
+          lass="text-3xl font-bold mb-6 bg-gradient-to-r from-[#ffffff] to-[#f3fbffd9] bg-clip-text text-transparent  text-center animate-gradient2">
+          <h2
+            class="text-3xl font-bold mb-6 bg-gradient-to-r from-[#ffffff] to-[#f3fbffd9] bg-clip-text text-transparent  text-center animate-gradient2">
+            Why Nestify?
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Service 1 -->
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="text-blue-500 mb-4">
+              <svg class="w-12 h-12 mx-auto" fill="url(#gradient)" viewBox="0 0 20 20">
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#121212">
+                      <animate attributeName="stop-color" values="#121212;#204255d9;#121212" dur="3s"
+                        repeatCount="indefinite" />
+                    </stop>
+                    <stop offset="100%" stop-color="#204255d9">
+                      <animate attributeName="stop-color" values="#204255d9;#121212;#204255d9" dur="3s"
+                        repeatCount="indefinite" />
+                    </stop>
+                  </linearGradient>
+                </defs>
+                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z" fill="url(#gradient)"></path>
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-bold mb-4 bg-gradient-to-r from-[#121212] to-[#204255d9] bg-clip-text text-transparent">
+              Free Listings
+            </h3>
+
+            <p>All what you want, under one roof!</p>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="bg-white p-8 rounded-lg shadow-lg h-auto">
+            <div class="text-blue-500 mb-4">
+              <svg class="w-12 h-12 mx-auto" viewBox="0 0 20 20">
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#121212">
+                      <animate attributeName="stop-color" values="#121212;#204255d9;#121212" dur="2s"
+                        repeatCount="indefinite" />
+                    </stop>
+                    <stop offset="100%" stop-color="#204255d9">
+                      <animate attributeName="stop-color" values="#204255d9;#121212;#204255d9" dur="2s"
+                        repeatCount="indefinite" />
+                    </stop>
+                  </linearGradient>
+                </defs>
+                <path fill="url(#gradient)"
+                  d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm2 0v10h12V5H4zm3 2h2v2H7V7zm0 4h2v2H7v-2zm4-4h2v2h-2V7zm0 4h2v2h-2v-2z">
+                </path>
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-bold mb-4 bg-gradient-to-r from-[#121212] to-[#204255d9] bg-clip-text text-transparent">
+              Detailed Listings</h3>
+            <p>Comprehensive details about products, including images, title, description.
+            </p>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="bg-white p-8 rounded-lg shadow-lg h-auto">
+            <div class=" mb-4">
+              <svg viewBox="0 0 20 20" class="w-12 h-12 mx-auto">
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#121212;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#204255d9;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <g id="contact-card" fill="url(#gradient)">
+                  <g>
+                    <path
+                      d="M12,20H0v-3.5c0-2.4,1.3-4.5,3.2-5.6C2.5,10.2,2,9.2,2,8.1c0-2.2,1.8-4,4-4s4,1.8,4,4c0,1.1-0.4,2.1-1.2,2.8 c1.9,1.1,3.2,3.3,3.2,5.6V20z M2,18h8v-1.5c0-2.4-1.8-4.5-4-4.5c-2.1,0-4,2.1-4,4.5V18z M6,6C4.9,6,4,6.9,4,8s0.9,2,2,2s2-0.9,2-2 S7.1,6,6,6z M24,17H14v-2h10V17z M21,13h-7v-2h7V13z M24,9H14V7h10V9z" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-bold mb-4 bg-gradient-to-r from-[#121212] to-[#204255d9] bg-clip-text text-transparent">
+              Direct Contact</h3>
+            <p>Buyers can contact sellers directly via the provided contact number for more information and
+              negotiations.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- About Nestify Section 2 (A picture from the dashbaord) -->
+    <section class="squaredContainer py-16 2xl:px-[17rem] xl:px-[3rem] lg:px-[2rem] md:px-[1rem] mb-8 w-full 
+    md:grid md:grid-cols-10 md:gap-x-5">
+
+      <div class="w-full text-center col-span-4 my-auto">
+        <div class="w-full md:col-span-3">
+          <div class="bg-[#232A31] text-white px-4 py-1 rounded-full text-sm mb-4 inline-block">
+            Your Dashboard
+          </div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">
+            Manage Your Properties with Ease
+          </h1>
+          <p class="text-lg text-gray-600 leading-relaxed mb-6">
+            Access all your listings, inquiries, and connections from one convenient location. Experience seamless
+            management and grow your network effortlessly.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center col-span-6 shadow-lg bg-white px-3 py-5 rounded-lg" style="filter: drop-shadow(0 0px 6px #314b5890);">
+        <section>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white shadow-md rounded-lg p-6 border">
+              <div class="bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-900">
+                Listed Properties
+              </div>
+              <div class="text-3xl font-bold mt-2 text-gray-800">15</div>
+              <div class="text-green-600 text-sm mt-1">+3 from last month</div>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6 border">
+              <div class="bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-900">
+                Total Views of Properties
+              </div>
+              <div class="text-3xl font-bold mt-2 text-gray-800">2,260</div>
+              <div class="text-green-600 text-sm mt-1">+20% from last month</div>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6 border">
+              <div class="bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-900">
+                Inquiries
+              </div>
+              <div class="text-3xl font-bold mt-2 text-gray-800">25</div>
+              <div class="text-green-600 text-sm mt-1">+10 from last month</div>
+            </div>
+          </div>
+        </section>
+    
+        <section>
+    
+          <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div
+              class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
+              <div class="w-max rounded-lg bg-gray-900 p-5 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" aria-hidden="true" class="h-6 w-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M1.5 12s3.75-7.5 10.5-7.5S22.5 12 22.5 12s-3.75 7.5-10.5 7.5S1.5 12 1.5 12z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z" />
+                </svg>
+              </div>
+              <div>
+                <h6
+                  class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
+                  Total views of your listed properties
+                </h6>
+                <p class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
+                  Inspect your listed properties and the number of views they have received.
+                </p>
+              </div>
+            </div>
+            <div class="px-2 pb-0">
+              <div id="chart"></div>
+            </div>
+          </div>
+    
+          <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+          <script>
+            const chartConfig = {
+              series: [
+                {
+                  name: "Views",
+                  data: [50, 220, 100, 70, 200, 350, 370, 400, 500],
+                },
+              ],
+              chart: {
+                type: "line",
+                height: 240,
+                toolbar: {
+                  show: false,
+                },
+              },
+              title: {
+                show: "",
+              },
+              dataLabels: {
+                enabled: false,
+              },
+              colors: ["#020617"],
+              stroke: {
+                lineCap: "round",
+                curve: "smooth",
+              },
+              markers: {
+                size: 0,
+              },
+              xaxis: {
+                axisTicks: {
+                  show: false,
+                },
+                axisBorder: {
+                  show: false,
+                },
+                labels: {
+                  style: {
+                    colors: "#616161",
+                    fontSize: "12px",
+                    fontFamily: "inherit",
+                    fontWeight: 400,
+                  },
+                },
+                categories: [
+                  "Apr",
+                  "May",
+                  "Jun",
+                  "Jul",
+                  "Aug",
+                  "Sep",
+                  "Oct",
+                  "Nov",
+                  "Dec",
+                ],
+              },
+              yaxis: {
+                labels: {
+                  style: {
+                    colors: "#616161",
+                    fontSize: "12px",
+                    fontFamily: "inherit",
+                    fontWeight: 400,
+                  },
+                },
+              },
+              grid: {
+                show: true,
+                borderColor: "#dddddd",
+                strokeDashArray: 5,
+                xaxis: {
+                  lines: {
+                    show: true,
+                  },
+                },
+                padding: {
+                  top: 5,
+                  right: 20,
+                },
+              },
+              fill: {
+                opacity: 0.8,
+              },
+              tooltip: {
+                theme: "dark",
+              },
+            };
+    
+            const chart = new ApexCharts(document.querySelector("#chart"), chartConfig);
+    
+            chart.render();
+          </script>
+    
+        </section>
+      </div>
+    </section>
+
+    <!-- Latest Listings -->
+    <section class="bg-gradient-to-b bg-white pt-16 pb-8 2xl:px-[19rem] xl:px-[7rem] lg:px-[5rem] px-[1.5rem]">
+      <h2 class="font-bold text-2xl mb-2">Latest Listed Properties</h2>
+      <div class="relative mb-2 pt-12">
+        <div id="arrowControllers" class="absolute right-6 top-0 z-10 gap-x-6">
+          <!-- Left Arrow -->
+          <button id="left-arrow" class="p-2 z-10">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gradient-left" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#121212">
+                    <animate attributeName="stop-color" values="#121212;#132733d9;#121212" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="100%" stop-color="#132733d9">
+                    <animate attributeName="stop-color" values="#132733d9;#121212;#132733d9" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                </linearGradient>
+              </defs>
+              <path
+                d="M4.205 8.72805L12.205 3.72805C13.2041 3.10363 14.5 3.82189 14.5 5.00004V15C14.5 16.1782 13.2041 16.8965 12.205 16.272L4.205 11.272C3.265 10.6845 3.265 9.31555 4.205 8.72805Z"
+                stroke="url(#gradient-left)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                fill="url(#gradient-left)" />
+            </svg>
+          </button>
+
+          <!-- Right Arrow -->
+          <button id="right-arrow" class="p-2 z-10">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gradient-right" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#121212">
+                    <animate attributeName="stop-color" values="#121212;#132733d9;#121212" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                  <stop offset="100%" stop-color="#132733d9">
+                    <animate attributeName="stop-color" values="#132733d9;#121212;#132733d9" dur="3s"
+                      repeatCount="indefinite" />
+                  </stop>
+                </linearGradient>
+              </defs>
+              <path
+                d="M15.795 11.272L7.795 16.272C6.79593 16.8964 5.5 16.1782 5.5 15L5.5 5.00002C5.5 3.82186 6.79593 3.1036 7.795 3.72802L15.795 8.72802C16.735 9.31552 16.735 10.6845 15.795 11.272Z"
+                stroke="url(#gradient-right)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                fill="url(#gradient-right)" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="flex flex-row gap-x-4 overflow-x-auto scroll-smooth py-2 " id="item-list">
+
+          <% for (let p of items) { %>
+            <section class="rounded-lg w-80 flex-shrink-0 bg-white">
+
+
+              <div
+                class="relative overflow-hidden shadow-lg rounded-lg group transition-all duration-300 hover:shadow-2xl card">
+
+                <div onclick="window.location.href='/items/<%= p._id %>'"
+                  class="cursor-pointer flex flex-col h-full">
+                  <div class="aspect-ratio-container">
+                    <img src="<%= p?.images[0]?.thumbnail2 %>"
+                      class="object-cover object-center transition-transform duration-300 group-hover:scale-[1.05]">
+                    <div
+                      class="overlay absolute inset-0 opacity-80 group-hover:opacity-30 transition-opacity duration-300">
+                    </div>
+                    <div
+                      class="absolute top-2 left-2 bg-[#2fc66c] bg-opacity-90 rounded-full flex items-center justify-center p-[0.15rem] z-20">
+                      <a href="https://wa.me/<%= p?.contact %>">
+                        <svg fill="#fff" height="30px" width="30px" version="1.1" id="Layer_1"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          viewBox="0 0 308 308" xml:space="preserve">
+                          <g>
+                            <path id="XMLID_469_" d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156
+                     c-3.032,0-5.579,1.511-7.563,4.479c-2.243,3.334-9.033,11.271-11.131,13.642c-0.274,0.313-0.648,0.687-0.872,0.687
+                     c-0.201,0-3.676-1.431-4.728-1.888c-24.087-10.463-42.37-35.624-44.877-39.867c-0.358-0.61-0.373-0.887-0.376-0.887
+                     c0.088-0.323,0.898-1.135,1.316-1.554c1.223-1.21,2.548-2.805,3.83-4.348c0.607-0.731,1.215-1.463,1.812-2.153
+                     c1.86-2.164,2.688-3.844,3.648-5.79l0.503-1.011c2.344-4.657,0.342-8.587-0.305-9.856c-0.531-1.062-10.012-23.944-11.02-26.348
+                     c-2.424-5.801-5.627-8.502-10.078-8.502c-0.413,0,0,0-1.732,0.073c-2.109,0.089-13.594,1.601-18.672,4.802
+                     c-5.385,3.395-14.495,14.217-14.495,33.249c0,17.129,10.87,33.302,15.537,39.453c0.116,0.155,0.329,0.47,0.638,0.922
+                     c17.873,26.102,40.154,45.446,62.741,54.469c21.745,8.686,32.042,9.69,37.896,9.69c0.001,0,0.001,0,0.001,0
+                     c2.46,0,4.429-0.193,6.166-0.364l1.102-0.105c7.512-0.666,24.02-9.22,27.775-19.655c2.958-8.219,3.738-17.199,1.77-20.458
+                     C233.168,179.508,230.845,178.393,227.904,176.981z" />
+                            <path id="XMLID_470_" d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716
+                     c-0.484,1.429-0.124,3.009,0.933,4.085C1.908,307.58,2.943,308,4,308c0.405,0,0.813-0.061,1.211-0.188l79.92-25.396
+                     c21.87,11.685,46.588,17.853,71.604,17.853C240.143,300.27,308,232.923,308,150.143C308,67.354,240.143,0,156.734,0z
+                     M156.734,268.994c-23.539,0-46.338-6.797-65.936-19.657c-0.659-0.433-1.424-0.655-2.194-0.655c-0.407,0-0.815,0.062-1.212,0.188
+                     l-40.035,12.726l12.924-38.129c0.418-1.234,0.209-2.595-0.561-3.647c-14.924-20.392-22.813-44.485-22.813-69.677
+                     c0-65.543,53.754-118.867,119.826-118.867c66.064,0,119.812,53.324,119.812,118.867
+                     C276.546,215.678,222.799,268.994,156.734,268.994z" />
+                          </g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="bg-white p-4 card-content flex-grow">
+                    <div class="flex justify-between items-center">
+                      <span class="text-gray-800 text-lg font-semibold">
+                        <%= p?.price %>
+                      </span>
+                      <span class="bg-gray-200 text-gray-700 text-xs px-4 py-1 rounded-full">
+                        <%= p?.listingType %>
+                      </span>
+                    </div>
+                    <span class="text-gray-700 mb-1">
+                      <%= p?.title %>
+                    </span>
+                    <p class="text-gray-600 mt-1 description">
+                      <%if ( p.description) { %>
+                        <%= p.description %>
+                          <% } else {%>
+                            No description available.
+                            <% }%>
+                    </p>
+
+                    <div class="flex items-center space-x-1 mt-4 text-gray-500">
+                      <svg width="20px" height="20px" viewbox="0 0 24 24" fill="currentcolor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12 10c-1.104 0-2-.896-2-2s.896-2 2-2 2 .896 2 2-.896 2-2 2m0-5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3m-7 2.602c0-3.517 3.271-6.602 7-6.602s7 3.085 7 6.602c0 3.455-2.563 7.543-7 14.527-4.489-7.073-7-11.072-7-14.527m7-7.602c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602" />
+                      </svg>
+                      <p>
+                        <%= p?.location %>
+                      </p>
+                    </div>
+                    <div class="flex space-x-3 items-center mt-4 text-gray-500">
+                      <div class="flex items-center space-x-1">
+                        <svg fill="currentcolor" height="20px" width="20px" version="1.1" id="Layer_1"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          viewbox="0 0 511.999 511.999" xml:space="preserve">
+                          <g>
+                            <g>
+                              <path d="M494.565,208.205c-6.121,0-11.251,3.141-14.387,7.894l-24.288-36.256v-50.833c0-29.541-24.435-53.028-53.974-53.028
+                       h110.082c-29.539,0-53.974,23.488-53.974,53.027v50.833l-24.338,36.256c-3.136-4.753-8.317-7.894-14.438-7.894
+                       C7.65,208.203,0,216.054,0,225.738v155.883c-0.001,9.685,7.648,16.991,17.333,16.991h13.058v19.872
+                       c0,9.684,7.851,17.534,17.534,17.534s17.534-7.851,17.534-17.534v-19.872h381.078v19.872c0,9.684,7.851,17.534,17.534,17.534
+                       s17.534-7.851,17.534-17.534v-19.872h13.058c9.684,0,17.334-7.306,17.334-16.99V225.739
+                       C511.999,216.055,504.249,208.205,494.565,208.205z M91.177,129.008c0-10.203,8.703-17.959,18.905-17.959h291.832
+                       c10.203,0,18.905,7.756,18.905,17.959v38.151h-15.37c0.103-0.767,0.174-1.543,0.174-2.338c0-9.684-7.851-17.534-17.534-17.534
+                       h123.908c-9.684,0-17.534,7.851-17.534,17.534c0,0.795,0.071,1.571,0.174,2.338H91.177V129.008z M83.855,201.941
+                       c0.866,0.132,1.744,0.286,2.647,0.286h341.79l14.329,21.041h69.376L83.855,201.941z M476.93,363.543h35.067V258.337h476.93
+                       V363.543z" />
+                            </g>
+                          </g>
+                        </svg>
+                        <p>
+                          <%=p?.bedrooms%>
+                        </p>
+                      </div>
+                      <span>&middot;</span>
+                      <div class="flex items-center space-x-1">
+                        <svg width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="currentColor"
+                            d="M464,280H80V100A51.258,51.258,0,0,1,95.113,63.515l.4-.4a51.691,51.691,0,0,1,58.6-10.162,79.1,79.1,0,0,0,11.778,96.627l10.951,10.951-20.157,20.158,22.626,22.626,20.157-20.157h0L311.157,71.471h0l20.157-20.157L308.687,28.687,288.529,48.844,277.578,37.893a79.086,79.086,0,0,0-100.929-8.976A83.61,83.61,0,0,0,72.887,40.485l-.4.4A83.054,83.054,0,0,0,48,100V280H16v32H48v30.7a23.95,23.95,0,0,0,1.232,7.589L79,439.589A23.969,23.969,0,0,0,101.766,456h12.9L103,496h33.333L148,456H356.1l12,40H401.5l-12-40h20.73A23.969,23.969,0,0,0,433,439.589l29.766-89.3A23.982,23.982,0,0,0,464,342.7V312h32V280ZM188.52,60.52a47.025,47.025,0,0,1,66.431,0L265.9,71.471,199.471,137.9,188.52,126.951A47.027,47.027,0,0,1,188.52,60.52ZM432,341.4,404.468,424H107.532L80,341.4V312H432Z"
+                            class="ci-primary" />
+                        </svg>
+                        <p>
+                          <%=p?.bathrooms%>
+                        </p>
+                      </div>
+                      <span>&middot;</span>
+                      <div class="flex items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="20px" height="20px"
+                          viewbox="0 0 512 512" preserveaspectratio="xMidYMid meet">
+
+                          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentcolor"
+                            stroke="currentcolor">
+                            <path
+                              d="M867 4588 c-9 -7 -82 -100 -162 -207 -102 -137 -145 -202 -145 -221 0 -19 43 -84 145 -221 80 -107 153 -200 162 -206 27 -21 72 -15 98 12 44 43 35 69 -70 208 l-95 127 1236 0 c988 0 1235 -3 1227 -12 -5 -7 -46 -59 -91 -115 -45 -56 -87 -113 -93 -126 -23 -51 38 -117 95 -103 38 9 346 397 346 436 0 38 -308 427 -345 436 -52 13 -113 -41 -101 -90 3 -13 45 -73 92 -132 48 -60 92 -115 97 -121 8 -10 -239 -13 -1227 -13 l-1236 0 95 127 c105 139 114 165 70 208 -26 27 -71 33 -98 13z" />
+                            <path
+                              d="M655 3486 c-41 -18 -83 -69 -90 -109 -3 -18 -4 -654 -3 -1414 3 -1378 3 -1382 24 -1409 11 -15 33 -37 48 -48 27 -21 29 -21 1416 -21 1387 0 1389 0 1416 21 15 11 37 33 48 48 21 27 21 29 21 1436 0 1407 0 1409 -21 1436 -11 15 -33 37 -48 48 -27 21 -31 21 -1404 23 -1130 2 -1382 0 -1407 -11z m2725 -1496 l0 -1350 -1330 0 -1330 0 0 1350 0 1350 1330 0 1330 0 0 -1350z" />
+                            <path
+                              d="M4012 3280 c-146 -116 -204 -168 -208 -187 -14 -56 48 -113 101 -93 14 5 72 47 128 92 56 45 108 86 115 91 9 8 12 -239 12 -1227 l0 -1236 -127 95 c-139 105 -165 114 -208 70 -27 -26 -33 -71 -12 -98 6 -9 99 -82 206 -162 137 -102 202 -145 221 -145 19 0 84 43 221 145 107 80 200 153 207 162 20 27 14 72 -13 98 -43 44 -69 35 -208 -70 l-127 -95 0 1236 c0 988 3 1235 13 1227 6 -5 58 -46 114 -91 56 -45 114 -87 128 -92 53 -20 115 37 101 94 -10 39 -396 346 -435 346 -21 0 -79 -40 -229 -160z" />
+                          </g>
+                        </svg>
+                        <p>
+                          <%= p?.areaInSqft %> sqft
+                        </p>
+                      </div>
+
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </section>
+            <% } %>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- What People Say About Us Section -->
+    <section class="bg-white py-16 px-8 overflow-hidden relative">
+      <h2
+        class="text-3xl font-bold bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text mb-10 text-center">
+        What People Say About Us</h2>
+      <div class="relative">
+
+        <div class="sliders-containers flex overflow-hidden text-nowrap">
+          <div class="users-reviews-slider flex">
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900  p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Amazing service!</h2>
+                <p class="mb-4 text-[#b3b3b3]">The 3D viewer is fantastic. It saved me a lot of time.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4 ">
+                <img src="https://picsum.photos/seed/1/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">John Doe</p>
+                  <p class="text-sm text-[#b3b3b3]">Software Engineer</p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Very helpful!</h2>
+                <p class="mb-4 text-[#b3b3b3]">I love the ease of use and the detailed views.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/2/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Jane Smith</p>
+                  <p class="text-sm text-[#b3b3b3]">Product Manager</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Highly recommend!</h2>
+                <p class="mb-4 text-[#b3b3b3]">This app made finding a rental so much easier.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/3/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Alice Johnson</p>
+                  <p class="text-sm text-[#b3b3b3]">Designer</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Fantastic!</h2>
+                <p class="mb-4 text-[#b3b3b3]">The virtual tours are a game-changer.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/4/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Bob Brown</p>
+                  <p class="text-sm text-[#b3b3b3]">Marketing Specialist</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Great experience!</h2>
+                <p class="mb-4 text-[#b3b3b3]">I found my dream home thanks to this app.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/5/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Charlie Davis</p>
+                  <p class="text-sm text-[#b3b3b3]">Data Analyst</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Very useful!</h2>
+                <p class="mb-4 text-[#b3b3b3]">The app is user-friendly and very efficient.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/6/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Dana Evans</p>
+                  <p class="text-sm text-[#b3b3b3]">HR Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="users-reviews-slider flex">
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900  p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Amazing service!</h2>
+                <p class="mb-4 text-[#b3b3b3]">The 3D viewer is fantastic. It saved me a lot of time.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4 ">
+                <img src="https://picsum.photos/seed/1/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">John Doe</p>
+                  <p class="text-sm text-[#b3b3b3]">Software Engineer</p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Very helpful!</h2>
+                <p class="mb-4 text-[#b3b3b3]">I love the ease of use and the detailed views.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/2/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Jane Smith</p>
+                  <p class="text-sm text-[#b3b3b3]">Product Manager</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Highly recommend!</h2>
+                <p class="mb-4 text-[#b3b3b3]">This app made finding a rental so much easier.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/3/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Alice Johnson</p>
+                  <p class="text-sm text-[#b3b3b3]">Designer</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Fantastic!</h2>
+                <p class="mb-4 text-[#b3b3b3]">The virtual tours are a game-changer.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/4/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Bob Brown</p>
+                  <p class="text-sm text-[#b3b3b3]">Marketing Specialist</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Great experience!</h2>
+                <p class="mb-4 text-[#b3b3b3]">I found my dream home thanks to this app.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/5/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Charlie Davis</p>
+                  <p class="text-sm text-[#b3b3b3]">Data Analyst</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 max-w-md rounded-xl shadow-lg flex flex-col user-review flex-shrink-0">
+              <div
+                class="bg-gradient-to-b from-gray-800 to-gray-900 text-transparent bg-clip-text p-4 rounded-t-xl text-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="32px" height="32px" viewBox="0 0 32 32">
+                  <path
+                    d="M9.563 8.469l-0.813-1.25c-5.625 3.781-8.75 8.375-8.75 12.156 0 3.656 2.688 5.375 4.969 5.375 2.875 0 4.906-2.438 4.906-5 0-2.156-1.375-4-3.219-4.688-0.531-0.188-1.031-0.344-1.031-1.25 0-1.156 0.844-2.875 3.938-5.344zM21.969 8.469l-0.813-1.25c-5.563 3.781-8.75 8.375-8.75 12.156 0 3.656 2.75 5.375 5.031 5.375 2.906 0 4.969-2.438 4.969-5 0-2.156-1.406-4-3.313-4.688-0.531-0.188-1-0.344-1-1.25 0-1.156 0.875-2.875 3.875-5.344z" />
+                </svg>
+                <h2 class="text-xl font-bold mb-2 text-white">Very useful!</h2>
+                <p class="mb-4 text-[#b3b3b3]">The app is user-friendly and very efficient.</p>
+              </div>
+              <div class="flex items-center mt-auto p-4">
+                <img src="https://picsum.photos/seed/6/75/75" alt="User Avatar" class="w-12 h-12 rounded-full"
+                  style="filter: drop-shadow(0 3px 35px #17C2EC);">
+                <div class="ml-4">
+                  <p class="font-bold text-white">Dana Evans</p>
+                  <p class="text-sm text-[#b3b3b3]">HR Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Contact Us Section -->
+    <!-- <section class="bg-white py-16 px-8">
+      <h2 class="text-3xl font-bold text-white mb-8 text-center">Contact Us</h2>
+      <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <form action="/submit-contact-form" method="POST">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
+            <input type="text" id="name" name="name"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+            <input type="email" id="email" name="email"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-gray-700 font-bold mb-2">Message</label>
+            <textarea id="message" name="message" rows="4"
+              class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit"
+              class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Send
+              Message</button>
+          </div>
+        </form>
+      </div>
+    </section> -->
+
+
+    <%- include('./partials/footer') -%>
+
+
+
+  </body>
+
+  <script src="/js/navbar.js"></script>
+  <script>
+    document.getElementById('left-arrow').addEventListener('click', function () {
+      document.getElementById('item-list').scrollBy({
+        left: -250,
+        behavior: 'smooth'
+      });
+    });
+
+    document.getElementById('right-arrow').addEventListener('click', function () {
+      document.getElementById('item-list').scrollBy({
+        left: 250,
+        behavior: 'smooth'
+      });
+    });
+
+    document.getElementById('search-button').addEventListener('click', async () => {
+
+      // try {
+      //   const response = await fetch('/sync-data', { method: 'POST' });
+      //   const result = await response.json();
+
+      //   if (result.success) {
+      //     console.log('Data sync successful:', result);
+      //   } else {
+      //     console.error('Data sync failed:', result.error);
+      //   }
+      // } catch (error) {
+      //   console.error('Error syncing data:', error);
+      // }
+
+      // const query = document.getElementById('search-input').value;
+
+      // try {
+      //   const response = await fetch(`/search?q=${encodeURIComponent(query)}`);
+      //   const searchResults = await response.json();
+
+      //   // Display results
+      //   console.log(searchResults);
+      // } catch (error) {
+      //   console.error('Error fetching search results:', error);
+      // }
+    });
+
+  </script>
+
+</html>

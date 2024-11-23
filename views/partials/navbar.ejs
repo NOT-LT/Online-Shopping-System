@@ -1,0 +1,108 @@
+<nav class=" dark:bg-gray-800 text-gray-900  customNav shadow-md sticky top-0 backdrop-blur-sm bg-opacity-0 z-[999]"
+  id="navbarMain">
+  <div class="mx-auto max-size px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between" id="navParent2">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button type="button" id="burger-btn"
+          class="relative inline-flex backdrop-blur items-center justify-center rounded-md p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 dark:focus:ring-white"
+          aria-controls="mobile-menu" aria-expanded="false">
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="hidden sm:mx-3 sm:block">
+          <div class="flex space-x-4">
+            <!-- console.log("ptitle:", page.title)  -->
+            <!-- Current: "border-b-2 border-cyan-500 text-black", Default: "text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" -->
+            <a href="/"
+              class="<%= page.title =='landing' ? 'border-b-[2.5px] border-[#0D1727] text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium "
+              aria-current="page">Home</a>
+            <a href="/items"
+              class="<%= page.title =='indexPage' ? ' border-b-[2.5px] border-[#0D1727] text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium  ">items</a>
+            <a href="/items/new"
+              class="<%= page.title =='newItemPage' ? ' border-b-[2.5px] border-[#0D1727] text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium ">New
+              item</a>
+            <a href="/items/recent"
+              class="<%= page.title =='recentItemPage' ? ' border-b-[2.5px] border-[#0D1727] text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium ">Recent</a>
+          </div>
+        </div>
+      </div>
+      <% if (currentUser) { %>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:mx-3 sm:pr-0">
+          
+
+          <!-- Profile dropdown -->
+          <div class="relative ml-3">
+            <div>
+              <button type="button"
+                class="relative flex rounded-full bg-gray-200 dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800"
+                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <span class="absolute -inset-1.5"></span>
+                <span class="sr-only">Open user menu</span>
+                <img class="h-10 w-10 rounded-full object-cover"
+                  src="<%= currentUser?.profilePicture ? currentUser?.profilePicture?.url : '../../../../img/profile-picture.png' %>" 
+                  alt="profile-img"> <!-- ensure getting out of any sub folder -->
+                  
+              </button>
+            </div>
+
+            <!-- Dropdown menu -->
+
+            <div id="profile-dropdown-menu"
+              class="hidden opacity-0 absolute right-0 z-20 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-700 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-200"
+              role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+              <a href="/dashboard"
+                class="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                role="menuitem" tabindex="-1" id="user-menu-item-0">My Dashboard</a>
+              <a href="/settings"
+                class="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+              <a href="/logout"
+                class="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+            </div>
+          </div>
+        </div>
+        <% } else { %>
+          <div class="inset-y-0 right-0 flex space-x-1">
+            <button type="button"
+              class="rounded-full bg-[#0D1727] hover:bg-[#0d1727ce] transition-all duration-150 px-4 py-2 text-white ">
+
+              <a href="/login">Join Now</a>
+            </button>
+          </div>
+          <% } %>
+
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="sm:hidden hidden opacity-0" id="mobile-menu">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <a href="/"
+        class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
+        aria-current="page">Home</a>
+      <a href="/items"
+        class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">items</a>
+      <a href="/items/new"
+        class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">New
+        item</a>
+      <a href="/items/new"
+        class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">Recent</a>
+    </div>
+  </div>
+</nav>
+
+<script src="/js/navbar.js"></script>
