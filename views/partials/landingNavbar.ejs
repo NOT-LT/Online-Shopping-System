@@ -1,0 +1,76 @@
+<nav
+  class=" sticky top-0 backdrop-blur-sm bg-transparent border-0 shadow-none"
+  id="navbarMain">
+  <div class="mx-auto max-size2 px-2 sm:px-6 lg:px-8 xl:px-4 2xl:px-0">
+    <div class="relative flex h-16 items-center justify-between" id="navParent2">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button type="button" id="burger-btn"
+          class="relative inline-flex backdrop-blur items-center justify-center rounded-md p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 dark:focus:ring-white"
+          aria-controls="mobile-menu" aria-expanded="false">
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="hidden sm:mx-3 sm:block">
+          <div class="flex space-x-4">
+            <!-- console.log("ptitle:", page.title)  -->
+            <!-- Current: "border-b-2 border-cyan-500 text-black", Default: "text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" -->
+            <a href="/properties"
+              class="<%= page.title =='indexPage' ? 'border-b-[2.5px] border-cyan-700 text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium "
+              aria-current="page">Home</a>
+            <a href="/properties"
+              class="<%= page.title =='indexPage' ? ' border-b-[2.5px] border-cyan-700 text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium  ">Properties</a>
+            <a href="/properties/new"
+              class="<%= page.title =='newItemPage' ? ' border-b-[2.5px] border-cyan-700 text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium ">New
+              item</a>
+            <a href="/properties/recent"
+              class="<%= page.title =='recentItemPage' ? ' border-b-[2.5px] border-cyan-700 text-black' : 'text-gray-900 bg-transparent' %> px-3 py-2 text-sm font-medium ">Recent</a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:mx-3 sm:pr-0" >
+
+
+        <div class="ml-3">
+          <div>
+            <button type="button" 
+              class="rounded-full bg-[#0D1727] hover:bg-[#0d1727ce] transition-all duration-150 px-4 py-2 text-white ">
+              
+              <a href="/login">Join Now</a>
+            </button>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="sm:hidden hidden opacity-0" id="mobile-menu">
+      <div class="space-y-1 px-2 pb-3 pt-2">
+        <a href="#"
+          class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
+          aria-current="page">Home</a>
+        <a href="/properties"
+          class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">Properties</a>
+        <a href="/properties/new"
+          class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">New
+          item</a>
+        <a href="/properties/new"
+          class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">Recent</a>
+      </div>
+    </div>
+</nav>

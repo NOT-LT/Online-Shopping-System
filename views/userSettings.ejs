@@ -1,0 +1,159 @@
+<%- layout('layout/boilerplate') %>
+
+  <div class="max-w-4xl mx-auto p-5 bg-white shadow-md px-4 md:px-6 lg:px-2">
+    <h2 class="text-2xl font-semibold mb-4">User Settings</h2>
+    <div class="border-b border-gray-200 mb-6">
+      <nav class="-mb-px flex space-x-8 flex-wrap flex-auto" aria-label="Tabs">
+        <a href="#change-info"
+          class="tab-link hover:text-gray-700 hover:border-gray-300 border-blue-500 text-blue-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Change
+          Information</a>
+        <a href="#change-password"
+          class="tab-link text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Change
+          Password</a>
+        <a href="#delete-account"
+          class="tab-link text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Delete
+          Account</a>
+      </nav>
+    </div>
+
+    <div id="change-info" class="tab-content">
+      <form id="changeInfoForm" method="POST" action="/settings" enctype="multipart/form-data">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="col-span-1 md:col-span-2 flex items-center space-x-4">
+            <img src="<%= user?.profilePicture?.url %>" alt="Profile Picture" id="profileImg"
+              class="w-24 h-24 rounded-full object-cover">
+            <div>
+              <label for="profilePicture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+              <input type="file" id="profilePicture" name="profilePicture"
+                accept="image/jpeg, image/png, image/gif, image/svg, image/jpg"
+                class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+            </div>
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+            <input required type="text" readonly id="username" name="username" value="<%= user.username %>"
+              class="mt-1 block w-full border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm outline-none border-b py-1">
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input required type="email" id="email" name="email" value="<%= user.email %>" class="input-field mt-1 block w-full border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm outline-none border-b py-1
+              invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700">
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input required type="text" id="fullName" name="fullName" value="<%= user.fullName %>" class="input-field mt-1 block w-full border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm outline-none border-b py-1
+              invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700">
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+            <input required type="text" pattern="^[0-9]*$" id="phoneNumber" name="phoneNumber"
+              value="<%= user.phoneNumber %>" class="mt-1 block w-full border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm outline-none border-b py-1
+              invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700">
+          </div>
+        </div>
+        <div class="mt-6">
+          <button type="submit" id="submitChangesBtn"
+            class="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 border-b-2 border-blue-500">Save
+            Changes</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="change-password" class="tab-content hidden">
+      <form class="changePasswordForm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="col-span-1 md:col-span-2">
+            <label for="oldPassword" class="block text-sm font-medium text-gray-700">Old Password</label>
+            <input type="password" id="oldPassword" name="oldPassword" required
+              class="mt-1 block w-full border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm outline-none border-b py-1">
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" required
+              class="mt-1 block w-full border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm outline-none border-b py-1">
+          </div>
+        </div>
+        <div class="mt-6">
+          <button type="submit"
+            class="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 border-b-2 border-blue-500">Change
+            Password</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="delete-account" class="tab-content hidden">
+      <form id="deleteAccountForm" method="POST" action="/settings?_method=DELETE">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="col-span-1 md:col-span-2">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" id="password" name="password" required
+              class="mt-1 block w-full border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm outline-none border-b py-1">
+          </div>
+        </div>
+        <div class="col-span-1 md:col-span-2 flex items-center mt-4">
+          <input type="checkbox" id="confirmDelete" name="confirmDelete" class="mr-2" required>
+          <label for="confirmDelete" class="text-sm font-medium text-gray-700">I understand that deleting my account is
+            permanent</label>
+        </div>
+        <div class="mt-6">
+          <button type="submit"
+            class="px-4 py-2 bg-red-600 text-white rounded-md shadow-sm hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-500 border-b-2 border-red-500">Delete
+            Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <script>
+    const submitChangesBtn = document.getElementById('submitChangesBtn');
+    const changeInfoForm = document.getElementById('changeInfoForm');
+    const changePasswordForm = document.getElementById('changePasswordForm');
+    const deleteAccountForm = document.getElementById('deleteAccountForm');
+    document.querySelectorAll('.input-field').forEach(input => {
+      input.addEventListener('input', function () {
+        if (!changeInfoForm.checkValidity()) { submitChangesBtn.classList.add('disableMe') }
+        else { submitChangesBtn.classList.remove('disableMe') }
+      });
+    })
+
+    deleteAccountForm.addEventListener('submit', (e) => {
+      if (!confirmDeleteAccount() || !changeInfoForm.checkValidity()) { e.preventDefault(); }
+    })
+
+    changeInfoForm.addEventListener('submit', (e)=> {
+      if (!changeInfoForm.checkValidity()) { e.preventDefault(); }
+    })
+
+    function confirmDeleteAccount() {
+      return confirm('Are you sure you want to delete your account? This action cannot be undone.');
+    }
+
+
+    document.getElementById('profilePicture').addEventListener('change', function (e) {
+      console.log("on change event userSettings.ejs")
+      const file = e?.target?.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function (e) {
+        addImage(e.target.result);
+      }
+    })
+
+
+    function addImage(src) {
+      console.log("on add Image func")
+      document.getElementById('profileImg').src = src;
+    }
+
+    document.querySelectorAll('.tab-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('border-blue-500', 'text-blue-600'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+        this.classList.add('border-blue-500', 'text-blue-600');
+        document.querySelector(this.getAttribute('href')).classList.remove('hidden');
+      });
+    });
+  </script>

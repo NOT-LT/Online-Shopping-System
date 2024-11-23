@@ -1,0 +1,118 @@
+<% layout('layout/boilerplate') %>
+  <h1 class="text-center text-2xl mb-4">Edit Item Information</h1>
+  <form id="editItemForm" action="/items/<%= item._id %>?_method=PUT" method="POST"
+    class="max-w-4xl mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+
+    <input id="deletedImgs" type="text" name="deletedImgs" value="" class="hidden">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-3">
+      <!-- Title -->
+      <div class="mb-4" required>
+        <label for="title" class="block text-gray-700 text-sm font-semibold mb-2">Title</label>
+        <input type="text" name="item[title]" id="title" minlength="5"
+          class="peer shadow appearance-none border w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline valid:border-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
+          required placeholder="Villa in Banijamra" value="<%= item.title %>">
+        <span class="mt-2 hidden text-sm text-red-700 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">Please
+          enter a valid title</span>
+      </div>
+
+      <!-- Item Type -->
+      <div class="mb-4">
+        <label for="itemCategory" class="block text-gray-700 text-sm font-semibold mb-2">Item Category </label>
+        <select name="item[itemCategory]" id="itemCategory" placeholder="None"
+          class="peer shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
+          required>
+          <option value="" disabled>Select a category</option>
+          <option value="Electronics" <%=item.itemCategory==='Electronics' ? 'selected' : '' %>>Electronics</option>
+          <option value="Clothing" <%=item.itemCategory==='Clothing' ? 'selected' : '' %>>Clothing</option>
+          <option value="Furniture" <%=item.itemCategory==='Furniture' ? 'selected' : '' %>>Furniture</option>
+          <option value="Books" <%=item.itemCategory==='Books' ? 'selected' : '' %>>Books</option>
+          <option value="Games" <%=item.itemCategory==='Games' ? 'selected' : '' %>>Games</option>
+        </select>
+        <span class="mt-2 hidden text-sm text-red-700 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">Please
+          select an Item Category</span>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-4">
+        <label for="price" class="block text-gray-700 text-sm font-semibold mb-2">Price</label>
+        <input type="text" name="item[price]" id="price" minlength="1"
+          class="peer shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline valid:border-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
+          required placeholder="1000000" pattern="^[0-9,.]*$"
+          value="<%= item.price.replace(' BHD', '').replace('/month', '') %>">
+        <span class="mt-2 hidden text-sm text-red-700 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">Please
+          enter a valid price</span>
+      </div>
+
+
+     
+
+
+      <!-- Description -->
+      <div class="mb-4 col-span-1 md:col-span-2">
+        <label for="description" class="block text-gray-700 text-sm font-semibold mb-2">Description</label>
+        <textarea name="item[description]" id="description" rows="3" minlength="1"
+          class="peer shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline valid:border-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
+          required placeholder="Describe the item..."><%= item.description %></textarea>
+        <span class="mt-2 hidden text-sm text-red-700 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">Please
+          enter a valid description</span>
+      </div>
+
+      <div class="mb-4 md:col-span-2">
+        <div class="flex justify-between relative">
+          <label for="uploadInput" class="block text-gray-700 text-sm font-semibold">Upload Images</label>
+          <button type="button" class=" bg-opacity-85  h-8 w-8 text-white rounded-full">
+            <input multiple id="uploadInput" type="file" name="item[images]"
+              accept="image/jpeg, image/png, image/gif" 
+              class="absolute inset-0 w-auto h-full opacity-0 cursor-pointer">
+            <svg viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#086d14">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <g id="Edit / Add_To_Queue">
+                  <path id="Vector"
+                    d="M3 9V19.4C3 19.9601 3 20.2399 3.10899 20.4538C3.20487 20.642 3.35774 20.7952 3.5459 20.8911C3.7596 21 4.0395 21 4.59846 21H15.0001M14 13V10M14 10V7M14 10H11M14 10H17M7 13.8002V6.2002C7 5.08009 7 4.51962 7.21799 4.0918C7.40973 3.71547 7.71547 3.40973 8.0918 3.21799C8.51962 3 9.08009 3 10.2002 3H17.8002C18.9203 3 19.4801 3 19.9079 3.21799C20.2842 3.40973 20.5905 3.71547 20.7822 4.0918C21.0002 4.51962 21.0002 5.07969 21.0002 6.19978L21.0002 13.7998C21.0002 14.9199 21.0002 15.48 20.7822 15.9078C20.5905 16.2841 20.2842 16.5905 19.9079 16.7822C19.4805 17 18.9215 17 17.8036 17H10.1969C9.07899 17 8.5192 17 8.0918 16.7822C7.71547 16.5905 7.40973 16.2842 7.21799 15.9079C7 15.4801 7 14.9203 7 13.8002Z"
+                    stroke="#00000#086d140" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </g>
+            </svg> </button>
+        </div>
+        <div class="flex flex-row overflow-x-auto relative mt-2 space-x-1">
+          <% item?.images.forEach((image, index)=> { %>
+            <div class="relative w-28 h-28 flex-shrink-0">
+              <img src="<%= image.thumbnail1 %>" data-img-name="<%= image.filename %>" alt="Item Image"
+                class="w-full h-full object-cover rounded-md">
+              <button type="button" class="absolute top-1 bg-opacity-85 right-1 bg-red-500 text-white rounded-full p-1"
+                onclick="removeImage(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <% }) %>
+        </div>
+      </div>
+
+
+    
+    </div>
+
+    <!-- Submit Button -->
+    <div class="mt-4">
+      <button type="submit" id="editItemButton"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline peer-invalid:pointer-events-none peer-invalid:opacity-50">
+        Submit
+      </button>
+    </div>
+
+    <div class="mt-4">
+      <a href="/items/<%= item._id %>"
+        class="inline-block align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800">
+        Back to item
+      </a>
+    </div>
+
+  </form>
+
+  <script src="/js/editPage.js"></script>

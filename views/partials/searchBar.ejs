@@ -1,0 +1,456 @@
+<form method="GET" action="/search" class="text-gray-800 py-4 space-y-3" style="z-index: 9999;">
+
+
+  <div class="flex justify-between w-full bg-white py-2 px-3 rounded-full"
+    style="filter: drop-shadow(0 0px 6px #314b5890);">
+    <input id="search-input" type="text" name="q" class="w-full border-gray-300 rounded-full p-2 outline-none "
+      placeholder="Search...">
+    <button id="search-button" class="w-auto bg-blue-500 text-white rounded-full px-7 py-[6px]">Search</button>
+  </div>
+
+  <div class="filters md:grid md:grid-cols-3 gap-x-3 w-full">
+
+    <div class="relative z-[23] w-full flex justify-center rounded-full bg-white p-2 col-span-1"
+      style="filter: drop-shadow(0 0px 6px #314b5890);">
+
+      <div class="w-full relative flex py-1 px-2">
+        <div id="dropdown2"
+          class="flex w-full justify-between items-center bg-white border-gray-300 rounded-md shadow-sm cursor-pointer">
+          <span class="text-gray-500">Item Type</span>
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <ul id="options-list2"
+          class="hidden top-8 z-[22] left-1/2 right-1/2 -translate-x-1/2  absolute w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-52 overflow-auto">
+          <li class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+            data-value="Villa">Villa</li>
+          <li class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+            data-value="Apartment">Apartment</li>
+          <li class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+            data-value="Flat">Flat</li>
+          <li class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+            data-value="Studio">Studio</li>
+          <li class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+            data-value="Camp">Camp</li>
+        </ul>
+        <input type="hidden" id="itemTypeFilterInput" name="itemTypeFilter">
+      </div>
+
+      <script>
+        const dropdown2 = document.getElementById('dropdown2');
+        const optionsList2 = document.getElementById('options-list2');
+        const selectedOptions2 = [];
+        const itemTypeFilterInput = document.getElementById('itemTypeFilterInput');
+
+        dropdown2.addEventListener('click', () => {
+          optionsList2.classList.toggle('hidden');
+        });
+
+        optionsList2.addEventListener('click', (event) => {
+          const target = event.target.closest('.option-item');
+          if (!target) return;
+
+          const value = target.getAttribute('data-value');
+          if (selectedOptions2.includes(value)) {
+            selectedOptions2.splice(selectedOptions2.indexOf(value), 1);
+          } else {
+            selectedOptions2.push(value);
+          }
+
+          updateOptionsList2();
+          updateDropdownText2();
+          updateHiddenInput2();
+        });
+
+        function updateOptionsList2() {
+          document.querySelectorAll('#options-list2 .option-item').forEach(item => {
+            const value = item.getAttribute('data-value');
+            if (selectedOptions2.includes(value)) {
+              item.innerHTML = `<span class="text-[#183FC7]">&#10003; </span>` + value;
+            } else {
+              item.innerHTML = value;
+            }
+          });
+        }
+
+        function updateDropdownText2() {
+          const dropdownText = selectedOptions2.length > 0 ? `${selectedOptions2.length} selected` : 'Item Type';
+          dropdown2.querySelector('span').textContent = dropdownText;
+        }
+
+        function updateHiddenInput2() {
+          itemTypeFilterInput.value = selectedOptions2.join(',');
+        }
+
+        // Initial call to set the dropdown text
+        updateDropdownText2();
+      </script>
+
+
+    </div>
+
+
+    <div
+      class="relative z-[22] grid grid-cols-2 gap-x-1 w-full mt-[5px] md:mt-[2px] md:flex md:justify-between md:col-span-2 md:gap-x-3 "
+      style="filter: drop-shadow(0 0px 6px #314b5890);">
+      <div class="w-full flex justify-center rounded-full bg-white p-2 relative z-[22]">
+        <div class="w-full relative  flex flex-col py-1 z-[22] px-2">
+          <div id="dropdown-location"
+            class="grid grid-cols-4 items-center w-full bg-white border-gray-300 rounded-md shadow-sm cursor-pointer overflow-hidden">
+            <input id="locationSelect" type="text" class="text-gray-500 outline-none inline-block col-span-3"
+              placeholder="All Locations">
+            <svg class="w-4 h-4 text-gray-500 justify-self-end col-span-1" fill="none" stroke="currentColor"
+              stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <ul id="options-list-location"
+            class="hidden z-[22]  top-8 left-1/2 right-1/2 -translate-x-1/2  absolute w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-52 overflow-auto">
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="A'ali">A'ali</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Abu Saiba'a">Abu Saiba'a</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Adhari">Adhari</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Adliya">Adliya</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Al Areen">Al Areen</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Al Eker">Al Eker</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Al Hajar">Al Hajar</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Al Khamis">Al Khamis</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Al Naim">Al Naim</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Al Qurayyah">Al Qurayyah</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Amwaj Island">Amwaj Island</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Arad">Arad</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Askar">Askar</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Awali">Awali</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Bahrain Bay">Bahrain Bay</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Bahrain Harbour">Bahrain Harbour</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Bani Jamrah">Bani Jamrah</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Barbar">Barbar</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Bilad Al Qadeem">Bilad Al Qadeem</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Bu Asheera">Bu Asheera</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Bu Ghazal">Bu Ghazal</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Bu Kowarah">Bu Kowarah</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Budaiya">Budaiya</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Buqwa">Buqwa</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Burhama">Burhama</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Buri">Buri</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Busaiteen">Busaiteen</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Daih">Daih</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Dair">Dair</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Damistan">Damistan</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Danat Al-Bahrain">Danat Al-Bahrain</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Dar Kulaib">Dar Kulaib</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Dilmunia">Dilmunia</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Diplomatic Area">Diplomatic Area</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Diraz">Diraz</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Diyar Al Muharraq">Diyar Al Muharraq</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Durrat Al Bahrain">Durrat Al Bahrain</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Durrat Al Muharraq">Durrat Al Muharraq</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="East Riffa">East Riffa</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Galali">Galali</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Ghuraifa">Ghuraifa</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Halat AbdulSaleh">Halat AbdulSaleh</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Hamad Town">Hamad Town</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Hamalah">Hamalah</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Hidd">Hidd</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Hoora">Hoora</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Isa Town">Isa Town</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Jid Ali">Jid Ali</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Jid Al Haj">Jid Al Haj</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Jid Hafs">Jid Hafs</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Jidali">Jidali</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Juffair">Juffair</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Jurdab">Jurdab</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Karana">Karana</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Karzakan">Karzakan</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Khawar">Khawar</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Khamis">Khamis</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Ma'ameer">Ma'ameer</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Manama">Manama</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Muharraq">Muharraq</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Muharraq">Zallaq</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Muharraq">Zinj</li>
+          </ul>
+          <input type="hidden" id="locationFilterInput" name="locationFilter">
+
+        </div>
+        <script>
+          const dropdownLocation = document.getElementById('dropdown-location');
+          const locationSelect = document.getElementById('locationSelect');
+          const optionsListLocation = document.getElementById('options-list-location');
+          const selectedOptionsLocation = [];
+          const locationFilterInput = document.getElementById('locationFilterInput');
+
+          locationSelect.addEventListener('input', () => {
+            optionsListLocation.classList.remove('hidden');
+            const value = locationSelect.value;
+            document.querySelectorAll('#options-list-location .option-item').forEach(item => {
+              if (item.getAttribute('data-value').toLowerCase().includes(value.toLowerCase())) {
+                item.classList.remove('hidden');
+              } else {
+                item.classList.add('hidden');
+              }
+            });
+          });
+          dropdownLocation.addEventListener('click', () => {
+            optionsListLocation.classList.toggle('hidden');
+          });
+
+          optionsListLocation.addEventListener('click', (event) => {
+            const target = event.target.closest('.option-item');
+            if (!target) return;
+
+            const value = target.getAttribute('data-value');
+            if (selectedOptionsLocation.includes(value)) {
+              selectedOptionsLocation.splice(selectedOptionsLocation.indexOf(value), 1);
+            } else {
+              selectedOptionsLocation.push(value);
+            }
+
+            updateOptionsListLocation();
+            updateDropdownTextLocation();
+            updateHiddenInputLocation();
+          });
+
+          function updateOptionsListLocation() {
+            document.querySelectorAll('#options-list-location .option-item').forEach(item => {
+              const value = item.getAttribute('data-value');
+              if (selectedOptionsLocation.includes(value)) {
+                item.innerHTML = `<span class="text-[#183FC7]">&#10003; </span>` + value;
+              } else {
+                item.innerHTML = value;
+              }
+            });
+          }
+
+          function updateDropdownTextLocation() {
+            console.log("updateDropdownTextLocation:");
+            locationSelect.placeholder = selectedOptionsLocation.length > 0 ? `${selectedOptionsLocation.length} selected` : 'Location';
+          }
+
+          function updateHiddenInputLocation() {
+            locationFilterInput.value = selectedOptionsLocation.join(',');
+          }
+
+
+        </script>
+      </div>
+      <div class="w-full flex justify-center rounded-full bg-white p-2 relative z-[22]">
+        <div class=" w-full relative flex py-1 px-2 z-[22]">
+          <div id="dropdown4"
+            class="flex w-full justify-between items-center bg-white border-gray-300 rounded-md shadow-sm cursor-pointer">
+            <span class="text-gray-500">Rent/Sale</span>
+            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <ul id="options-list4"
+            class="hidden z-[22] top-8 left-1/2 right-1/2 -translate-x-1/2  absolute w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-52 overflow-auto">
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Rent">Rent</li>
+            <li
+              class="option-item cursor-pointer select-none relative py-2 pl-10 pr-4 hover:bg-blue-500 hover:text-white"
+              data-value="Sale">Sale</li>
+          </ul>
+          <input type="hidden" id="listingTypeFilterInput" name="listingTypeFilter">
+        </div>
+
+        <script>
+          const dropdown4 = document.getElementById('dropdown4');
+          const optionsList4 = document.getElementById('options-list4');
+          const selectedOptions4 = [];
+          const listingTypeFilterInput = document.getElementById('listingTypeFilterInput');
+
+          dropdown4.addEventListener('click', () => {
+            optionsList4.classList.toggle('hidden');
+          });
+
+          optionsList4.addEventListener('click', (event) => {
+            const target = event.target.closest('.option-item');
+            if (!target) return;
+
+            const value = target.getAttribute('data-value');
+            if (selectedOptions4.includes(value)) {
+              selectedOptions4.splice(selectedOptions4.indexOf(value), 1);
+            } else {
+              selectedOptions4.push(value);
+            }
+
+            updateOptionsList4();
+            updateDropdownText4();
+            updateHiddenInput4();
+          });
+
+          function updateOptionsList4() {
+            document.querySelectorAll('#options-list4 .option-item').forEach(item => {
+              const value = item.getAttribute('data-value');
+              if (selectedOptions4.includes(value)) {
+                item.innerHTML = `<span class="text-[#183FC7]">&#10003; </span>` + value;
+              } else {
+                item.innerHTML = value;
+              }
+            });
+          }
+
+          function updateDropdownText4() {
+            const dropdownText = selectedOptions4.length > 0 ? `${selectedOptions4.length} selected` : 'Rent/Sale';
+            dropdown4.querySelector('span').textContent = dropdownText;
+          }
+
+          function updateHiddenInput4() {
+            listingTypeFilterInput.value = selectedOptions4.join(',');
+          }
+
+          // Initial call to set the dropdown text
+          updateDropdownText4();
+        </script>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</form>
+
+<script>
+  document.addEventListener('click', (event) => {
+
+    if (!dropdownLocation.contains(event.target) && !locationSelect.contains(event.target) && !optionsListLocation.contains(event.target)) {
+      optionsListLocation.classList.add('hidden');
+    }
+    if (!dropdown2.contains(event.target) && !optionsList2.contains(event.target)) {
+      optionsList2.classList.add('hidden');
+    }
+    if (!dropdown4.contains(event.target) && !optionsList4.contains(event.target)) {
+      optionsList4.classList.add('hidden');
+    }
+
+  });
+</script>
