@@ -81,66 +81,89 @@
               role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
           </div>
           </div>
-          <!-- Cart Dropdown -->
-          <div id="cart-dropdown-menu"
-            class="opacity-0 hidden right-11 top-9 absolute z-20 mt-2 w-[300px] min-h-[200px] h-auto rounded-md bg-white dark:bg-gray-700 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-200"
-            role="menu" aria-orientation="vertical" aria-labelledby="cart-button" tabindex="-1">
-            <% if (currentUser && currentUser.shoppingCart && currentUser.shoppingCart.length> 0) { %>
-              <div class="w-auto flex flex-col justify-center">
-                <% cartItems.forEach(item=> { %>
-                  <div class="flex justify-between px-4 py-2 border-t border-b border-gray-300 dark:border-gray-600">
-                    <div class="flex flex-row items-center gap-x-[6px]">
-                      <img src="<%= item.item.images[0].url %>" alt="img" class="h-14 w-14 object-cover rounded-sm">
-                      <div>
-                        <p class="text-sm text-gray-900 dark:text-gray-300">
-                          <%= item.item.title %>
-                        </p>
-                        <p class="text-green-900" style="font-size: 12px;">
-                          <%= item.item.price %>
-                        </p>
-                        <div class="flex items-center" style="font-size: 12px;">
-                          <span class="text-gray-600 mr-1">Color:</span>
-                          <div class="h-[12px] w-[12px] rounded-full"
-                            style="background-color: <%= item.color ? item.color : '#000' %>;">
-                          </div>
-                        </div>
-                      </div>
+         <!-- Cart Dropdown -->
+<div id="cart-dropdown-menu"
+class="opacity-0 hidden right-11 top-9 absolute z-20 mt-2 w-[360px] min-h-[200px] h-auto rounded-md bg-white dark:bg-gray-800 py-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-200"
+role="menu" aria-orientation="vertical" aria-labelledby="cart-button" tabindex="-1">
 
-
-                    </div>
-                    <div class="flex flex-col items-center justify-between">
-                      <input type="number" value="<%= item.qty %>" min="1"
-                      class="w-10 max-h-fit-content text-center text-sm text-gray-900 dark:text-gray-300 bg-gray-200 dark:bg-gray-800 rounded-md self-center">
-                      <form action="/shoppingCart?_method=DELETE" method="POST" class="max-w-[25px] max-h-[25px]">
-                        <button class="m-0 p-0">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none"
-                            class="flex-shrink-0">
-                            <path stroke="#991B1B"
-                              d="M10 12L14 16M14 12L10 16M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6"
-                              stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                        <input id="itemId" name="itemId" hidden type="text" value="<%=item._id%>">
-                      </form>
-                    </div>
-                   
-                  </div>
-
-                  <% }) %>
-
+<% if (currentUser && currentUser.shoppingCart && currentUser.shoppingCart.length > 0) { %>
+  <div class="space-y-4 px-4">
+    <% let totalPrice = 0 %>
+    <% cartItems.forEach(item => { %>
+      <!-- Cart Item -->
+      <div class="flex items-center justify-between">
+        <!-- Product Image and Details -->
+        <div class="flex items-center gap-4">
+          <img src="<%= item.item.images[0].url %>" alt="Product Image" class="h-16 w-16 object-cover rounded">
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100"><%= item.item.title %></h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400"><%= item.item.subtitle %></p>
+            <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <span>Color:</span>
+              <div class="h-4 w-4 rounded-full ml-2"
+                style="background-color: <%= item.color ? item.color : '#000' %>;">
               </div>
-             
-              <div class="flex justify-center mt-auto">
-                <a class="p-[6px] mt-[5px] text-white bg-slate-800 text-center rounded-md"
-                  href="/checkout">Checkout</a>
-              </div>
-                <% } else { %>
-                  <div class="flex justify-center items-center mx-auto mt-auto">
-                    <p class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">Your cart is empty.</p>
-                  </div>
-                  <% } %>
-                    
+            </div>
           </div>
+        </div>
+        <!-- Price and Actions -->
+         <% totalPrice += parseFloat(item.item.price) * parseFloat(item.qty) %>
+        <div class="flex flex-col items-end">
+          <p class="text-sm font-medium text-gray-900 dark:text-gray-100"><%= item.item.price %></p>
+          <div class="flex items-center mt-2">
+            <!-- Increment-Decrement Input -->
+            <form class="flex items-center">
+              <button type="submit" name="action" value="decrement"
+                class="px-2 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 rounded-l hover:bg-gray-300">
+                -
+              </button>
+              <input type="number" name="qty" value="<%= item.qty %>" min="1"
+                class="w-10 text-center text-sm text-gray-900 dark:text-gray-100 bg-gray-200 dark:bg-gray-800 border-none focus:ring-0">
+              <button type="submit" name="action" value="increment"
+                class="px-2 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 rounded-r hover:bg-gray-300">
+                +
+              </button>
+              <input id="itemId" name="itemId" hidden type="text" value="<%= item._id %>">
+            </form>
+            <!-- Remove Button -->
+            <form action="/shoppingCart?_method=DELETE" method="POST" class="ml-3">
+              <button class="text-sm text-red-600 hover:underline">
+                Remove
+              </button>
+              <input id="itemId" name="itemId" hidden type="text" value="<%= item._id %>">
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Divider -->
+      <hr class="border-t border-gray-200 dark:border-gray-700">
+    <% }) %>
+  </div>
+
+  <!-- Total and Checkout -->
+  <div class="px-4 py-4">
+  
+    <div class="flex justify-between items-center text-sm font-medium text-gray-900 dark:text-gray-100">
+      <p>Total</p>
+      <p><%= totalPrice %> BHD</p> <!-- Display total with two decimal places -->
+    </div>
+    <a href="/checkout"
+      class="block w-full mt-4 bg-blue-600 text-white text-center py-2 rounded-md hover:bg-blue-700">
+      Checkout
+    </a>
+   
+  </div>
+<% } else { %>
+  <!-- Empty Cart Message -->
+  <div class="flex flex-col items-center justify-center h-full">
+    <p class="text-sm text-gray-900 dark:text-gray-300">Your cart is empty.</p>
+    <a class="mt-2 text-sm text-blue-600 hover:underline">Start Shopping →</a>
+  </div>
+<% } %>
+</div>
+
+
+
 
 
           <!-- Dropdown menu -->

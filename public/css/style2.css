@@ -292,3 +292,11 @@ body {
 #OrderStatusCircule {
   animation: opacityAnimation 1.5s ease infinite;
 }
+
+.login-background {
+  background-color: #f0f0f0;
+  background-image: url('path/to/your/pattern.png'); /* Replace with the path to your pattern image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
