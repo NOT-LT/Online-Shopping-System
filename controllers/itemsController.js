@@ -85,3 +85,7 @@ module.exports.updateItem = async (req, res) => {
   res.redirect(`/items/${id}`)
 }
 
+module.exports.renderDiscounted = async (req, res) => {
+  const items = await Item.find({ discount: { $gt: 0 } });
+  res.render('items/discounted', { items, page: { title: 'discountedItems' } })
+}

@@ -73,6 +73,27 @@ const getImages = async () => {
   return arr;
 };
 
+const getRandomDiscount = () => {
+  let d = faker.number.int({ min: 10, max: 50 });
+  if (d <= 19) {
+    d = 10;
+    return d;
+  }
+  else if (d <= 29) { 
+    d = 25;
+    return d;
+  }
+  else if (d <= 39) {
+    d = 30;
+    return d;
+  }
+  else {
+    d = 50;
+    return d;
+  }
+
+}
+
 const seedDB = async () => {
   await Item.deleteMany({}); // Clear existing data
   await Review.deleteMany({}); // Clear existing data
@@ -105,7 +126,9 @@ const seedDB = async () => {
       depth: faker.number.float({ min: 30, max: 200 }).toFixed(1),
       weight: faker.number.float({ min: 1, max: 100 }).toFixed(1),
       material: faker.commerce.productMaterial(),
-      brand: faker.company.name()
+      brand: faker.company.name(),
+      reviews: [],
+      discount: faker.datatype.boolean({ probability: 0.5}) ? getRandomDiscount() : 0
     });
 
     // Save the item to the database

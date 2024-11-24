@@ -6,7 +6,7 @@ const { storeRedirectTo, validateUpdateUserInfo, matchPassword } = require('../m
 const passport = require('passport')
 const User = require('../mongooseModels/user');
 const { registerUser, loginUser, logoutUser, renderRegisterForm, renderLoginForm,renderCheckout, renderOrders,
-  getUserDashboard, getUserSettings, postUserSettings, deleteUser, addToShoppingCart, getShoppingCart, addOrder } = require('../controllers/usersController');
+  getUserDashboard, getUserSettings, postUserSettings, deleteUser, addToShoppingCart,deleteFromShoppingCart, getShoppingCart, addOrder } = require('../controllers/usersController');
 const { isLoggedIn } = require('../middleware');
 const { storageProfilePicture } = require('../cloudinary/index')
 const multer = require('multer');
@@ -23,6 +23,7 @@ router.route('/login')
 router.route('/shoppingCart')
   .get(asyncHandler(getShoppingCart))
   .post(asyncHandler(addToShoppingCart))
+  .delete(asyncHandler(deleteFromShoppingCart))
 
 router.get('/dashboard', isLoggedIn, asyncHandler(getUserDashboard));
 

@@ -9,8 +9,19 @@
           <div class="flex items-center justify-between">
             <div>
               <h2 class="text-lg font-semibold">Order #<%= order._id %></h2>
-              <p class="text-gray-600">Date: <%= new Date(order.orderDate).toLocaleDateString() %></p>
+              <p class="text-gray-600">Date and Time: <%= new Date(order.orderDate).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %></p>
               <p class="text-gray-600">Total: <%= parseFloat(order.total) %> BHD</p>
+             
+              <div class="text-gray-600 flex flex-row items-center">
+                
+                <span>Order Status: &#8203; </span>
+                <% if (order.orderStatus == 'Pending' || order.orderStatus == 'Shipped')  { %>
+                  <div id="OrderStatusCircule" class="w-[14px] h-[14px] bg-yellow-500 rounded-full"></div>
+                <% } %>
+                <span> &#8203;  <%= order.orderStatus %></span>
+                
+              </div>
+
             </div>
             <button id="viewDetailsBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="toggleOrderDetails(<%= index %>)">
               View Details

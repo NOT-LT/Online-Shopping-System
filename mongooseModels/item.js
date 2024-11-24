@@ -83,6 +83,10 @@ const ItemSchema = new Schema({
     type: String,
     required: false
   },
+  discount: {
+    type: Number,
+    required: false
+  }
 });
 
 function addCommasToNumberInString(str) {

@@ -165,11 +165,26 @@ module.exports.addOrder = async (req, res) => {
   user.shoppingCart = [];
   await user.save();
   req.flash('success', 'Order placed successfully');
-  return res.redirect('/orders');
+  return res.status(200).redirect('/orders');
 }
 
 module.exports.renderOrders = async (req, res) => {
   const user = await User.findById(req?.user?.id).populate('orders.items.item');
   const orders = user.orders;
-  return res.render('orders', { orders });
+  return res.status(200).render('orders', { orders });
+}
+
+module.exports.deleteFromShoppingCart = async (req, res) => {
+  const user = await User.findById(req?.user?.id);
+  const itemId = req.body.itemId;
+  const itemColor = req.body.itemColor;
+  console.log("iID:" + itemId);
+  user.shoppingCart = user.shoppingCart.filter(item =>
+     {
+      return item._id != itemId
+     }
+  );
+  await user.save();
+  const prevPage = req.get('Referer') || '/items';
+  return res.status(200).redirect(prevPage);
 }

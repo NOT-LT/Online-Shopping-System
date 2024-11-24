@@ -279,3 +279,16 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@keyframes opacityAnimation {
+   0%, 100% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 40%;
+  }
+}
+#OrderStatusCircule {
+  animation: opacityAnimation 1.5s ease infinite;
+}
