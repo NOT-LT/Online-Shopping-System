@@ -147,3 +147,28 @@ module.exports.renderCheckout = async (req, res) => {
   const shoppingCart = user.shoppingCart;
   return res.render('checkout', { shoppingCart });
 };
+
+module.exports.addOrder = async (req, res) => {
+  const user = await User.findById(req?.user?.id).populate('shoppingCart.item');
+  const shoppingCart = user.shoppingCart;
+  let totalPrice = 0;
+  
+  shoppingCart.forEach((cartItem)=> {
+    totalPrice += (parseFloat(cartItem.item.price) * parseFloat(cartItem.qty))
+  });
+  totalPrice = totalPrice.toFixed(2);
+  console.log(totalPrice);
+  const order = { orderDate: new Date(Date.now()), items: shoppingCart,
+     orderStatus: "Pending", total: totalPrice  };
+  user.orders.push(order);
+  user.shoppingCart = [];
+  await user.save();
+  req.flash('success', 'Order placed successfully');
+  return res.redirect('/orders');
+}
+
+module.exports.renderOrders = async (req, res) => {
+  const user = await User.findById(req?.user?.id).populate('orders.items.item');
+  const orders = user.orders;
+  return res.render('orders', { orders });
+}

@@ -49,7 +49,9 @@ const UserSchema = new Schema({
           type: Schema.Types.ObjectId,
           ref: 'Item'
         } 
-      }]
+      }],
+      orderStatus: String,
+      total: String
     }],
     default: []
   }
