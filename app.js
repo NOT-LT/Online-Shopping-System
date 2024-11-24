@@ -86,7 +86,69 @@ app.use('/items/:id/review', reviewsRoute)
 app.use('/items', itemsRoute)
 
 
-app.get('/search', async (req, res) => {
+app.get('/search',  asyncHandler(async (req, res) => {
+  const searchValue = req.query.q;
+  let itemCategoriesFilter = req.query.itemCategoryFilter.toString().split(',');
+  let itemBrandFilter = req.query.brandFilter.toString().split(',');
+  let itemPriceRangeFilter = req.query.priceRangeFilter.toString().split(',');
+  itemCategoriesFilter = itemCategoriesFilter.filter((item) => item !== '');
+  itemBrandFilter = itemBrandFilter.filter((item) => item !== '');
+  itemPriceRangeFilter = itemPriceRangeFilter.filter((item) => item !== '');
+  const items = await Item.find({  }).populate('reviews');
+  if (searchValue === '' || searchValue === undefined || searchValue === null || searchValue.toLowerCase() == 'all') {
+    const filteredItems = items.filter((item)=> {
+      let match = true;
+      if (itemCategoriesFilter && itemCategoriesFilter.length !=0 && !(itemCategoriesFilter.includes(item.itemCategory))) {
+        match = false;
+      }
+      if (itemBrandFilter && itemBrandFilter.length !=0 && !(itemBrandFilter.includes(item.brand))) {
+        match = false;
+      }
+      if (itemPriceRangeFilter && itemPriceRangeFilter.length !=0) {
+        const price = parseFloat(item.price);
+        console.log("pp:" + itemPriceRangeFilter); 
+        console.log("pp2:" + price); 
+        if (itemPriceRangeFilter.includes('<=20BHD') && (price > 20)) {
+          match = false;
+        }
+        if (itemPriceRangeFilter.includes('<=50BHD') && (price> 50)) {
+          match = false;
+        }
+        if (itemPriceRangeFilter.includes('<=100BHD') && (price > 100)) {
+          match = false;
+        }
+        if (itemPriceRangeFilter.includes('<=250BHD') && (price > 250)) {
+          match = false;
+        }
+        if (itemPriceRangeFilter.includes('<=500BHD') && (price > 500)) {
+          match = false;
+        }
+        if (itemPriceRangeFilter.includes('+500BHD') && !(price >= 500)) {
+          match = false;
+        }
+      }
+      return match;
+    });
+    res.render('items/searchResult', { items:filteredItems, searchValue, page: { title: 'Search Results' } });
+  } else {
+    const filteredItems = items.filter((item)=> {
+      let match = true;
+      if (!(item.title.toLowerCase().includes(searchValue.toLowerCase()) || item.description.toLowerCase().includes(searchValue.toLowerCase()) || item.brand.toLowerCase().includes(searchValue.toLowerCase()))) {
+        match = false;
+      }
+      if (itemCategoriesFilter && itemCategoriesFilter.length !=0 && !(itemCategoriesFilter.includes(item.itemCategory))) {
+        match = false;
+      }
+      if (itemBrandFilter && itemBrandFilter.length !=0 && !(itemBrandFilter.includes(item.brand))) {
+        match = false;
+      }
+      if (itemPriceRangeFilter && itemPriceRangeFilter.length !=0 && !(itemPriceRangeFilter.includes(item.price))) {
+        match = false;
+      }
+      return match;
+    })
+    res.render('items/searchResult', { items:filteredItems, searchValue, page: { title: 'Search Results' } });
+  }
   // try {
   //   const query = req.query.q; // Get query from request parameters
   //   const propertyType = req.query.propertyTypeFilter.toString().toLowerCase() || 'all types';
@@ -154,7 +216,7 @@ app.get('/search', async (req, res) => {
   //   console.error('Error performing search:', error);
   //   res.status(500).json({ error: 'Error performing search' });
   // }
-});
+}));
 
 
 

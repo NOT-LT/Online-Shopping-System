@@ -105,8 +105,7 @@ body {
 
 .aspect-ratio-container {
   width: 100%;
-  padding-bottom: 66.67%;
-  /* 3:2 aspect ratio */
+  padding-bottom: 85%;
   overflow: hidden;
   position: relative;
 }
@@ -137,7 +136,7 @@ body {
 
 .description {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   /* number of lines to show */
   -webkit-box-orient: vertical;
   overflow: hidden;

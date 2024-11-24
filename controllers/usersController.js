@@ -139,7 +139,8 @@ module.exports.addToShoppingCart = async (req, res) => {
 
   await user.save();
   req.flash('success', 'Item added to shopping cart');
-  return res.redirect('/items/' + itemId);
+  const previousPage = req.get('Referer') || '/items';
+  return res.redirect(previousPage);
 }
 
 module.exports.renderCheckout = async (req, res) => {

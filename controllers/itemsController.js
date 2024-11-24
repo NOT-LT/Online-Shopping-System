@@ -5,7 +5,7 @@ const { cloudinary } = require('../cloudinary');
 const User = require('../mongooseModels/user');
 
 module.exports.renderIndex = async (req, res) => {
-  const items = await Item.find({});
+  const items = await Item.find({}).populate('reviews');
   res.render('items/index', { items, page: { title: 'indexPage' } })
 };
 
