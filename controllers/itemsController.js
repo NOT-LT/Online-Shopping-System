@@ -2,9 +2,7 @@ const express = require('express');
 const ExpressError = require('../utils/ExpressError')
 const Item = require('../mongooseModels/item');
 const { cloudinary } = require('../cloudinary');
-const maptilerClient = require('@maptiler/client');
 const User = require('../mongooseModels/user');
-maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.renderIndex = async (req, res) => {
   const items = await Item.find({});

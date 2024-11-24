@@ -1,0 +1,37 @@
+<%- layout('layout/boilerplate') %>
+
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-semibold mb-4">Checkout</h1>
+  <div class="bg-white shadow-md rounded-lg p-4">
+    <% if (shoppingCart && shoppingCart.length > 0) { %>
+      <% shoppingCart.forEach((cartItem, index) => { %>
+        <div class="flex items-center justify-between border-b border-gray-200 py-4">
+          <div class="flex items-center">
+            <img src="<%= cartItem.item.images[0].url %>" alt="<%= cartItem.item.title %>" class="h-24 w-24 object-cover rounded-sm">
+            <div class="ml-4">
+              <h2 class="text-lg font-semibold"><%= cartItem.item.title %></h2>
+              <p class="text-gray-600">Quantity: x<%= cartItem.qty %></p>
+              <p class="text-gray-600">Price: <%= cartItem.item.price %></p>
+              <div class="flex items-center">
+                <span class="text-gray-600 mr-2">Color:</span>
+                <div class="h-4 w-4 rounded-full" style="background-color: <%= cartItem.color ? cartItem.color : '#000' %>;"></div>              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-gray-600">Total: <%= (parseFloat(cartItem.item.price) * parseFloat(cartItem.qty)).toFixed(2) %></p>
+          </div>
+        </div>
+      <% }) %>
+      <div class="mt-4 text-right">
+        <form action="/orders" method="POST">
+          <input hidden type="text" name="">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Confirm Order
+          </button>
+        </form>
+      </div>
+    <% } else { %>
+      <p class="text-gray-600">Your cart is empty.</p>
+    <% } %>
+  </div>
+</div>

@@ -21,11 +21,40 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  profilePicture: imgSchema,
+  profilePicture: {
+    type: imgSchema
+  },
   isAdmin: {
     type: Boolean,
     default: false
   },
+  shoppingCart: {
+    type: [{
+      qty: Number,
+      color: String,
+      item: {
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+      }
+    }],
+    default: []
+  },
+  orders: {
+    type: [{
+      orderDate: Date,
+      items: [{
+        qty: Number,
+        color: String,
+        item: {
+          type: Schema.Types.ObjectId,
+          ref: 'Item'
+        } 
+      }],
+      orderStatus: String,
+      total: String
+    }],
+    default: []
+  }
 })
 
 // UserSchema.methods.getViews = async function() {

@@ -5,8 +5,8 @@ const asyncHandler = require('../utils/asyncHandler')
 const { storeRedirectTo, validateUpdateUserInfo, matchPassword } = require('../middleware');
 const passport = require('passport')
 const User = require('../mongooseModels/user');
-const { registerUser, loginUser, logoutUser, renderRegisterForm, renderLoginForm,
-  getUserDashboard, getUserSettings, postUserSettings, deleteUser } = require('../controllers/usersController');
+const { registerUser, loginUser, logoutUser, renderRegisterForm, renderLoginForm,renderCheckout, renderOrders,
+  getUserDashboard, getUserSettings, postUserSettings, deleteUser, addToShoppingCart, getShoppingCart, addOrder } = require('../controllers/usersController');
 const { isLoggedIn } = require('../middleware');
 const { storageProfilePicture } = require('../cloudinary/index')
 const multer = require('multer');
@@ -20,8 +20,17 @@ router.route('/login')
   .get(asyncHandler(renderLoginForm))
   .post(storeRedirectTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), asyncHandler(loginUser))
 
+router.route('/shoppingCart')
+  .get(asyncHandler(getShoppingCart))
+  .post(asyncHandler(addToShoppingCart))
 
 router.get('/dashboard', isLoggedIn, asyncHandler(getUserDashboard));
+
+router.get('/checkout', isLoggedIn, asyncHandler(renderCheckout));
+
+router.route('/orders')
+  .get(isLoggedIn, asyncHandler(renderOrders))
+  .post(isLoggedIn, asyncHandler(addOrder))
 
 router.route('/settings')
   .all(isLoggedIn) // Apply isLoggedIn middleware to all methods on this route)

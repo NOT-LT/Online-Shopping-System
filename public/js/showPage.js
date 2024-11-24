@@ -52,84 +52,86 @@ document.addEventListener('DOMContentLoaded', (event) => {
     } catch (error) {
     }
   }
- 
 
+  function generateStars(rating) {
+    let stars = '';
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars += '★'; // Filled star
+      } else {
+        stars += '☆'; // Empty star
+      }
+    }
+    return stars;
+  }
 
-  const inquiryOverlay = document.getElementById('inquiryOverlay');
-  const inquiryStatusDisplay = document.getElementById('inquiryStatusDisplay');
-  inquiryForm?.addEventListener('submit', (event) => {
-    event.preventDefault(); // Prevent default form submission
-    const itemId = inquiryForm?.getAttribute("data-item-id");
-    console.log("inquiryMsgFullname: ", inquiryMsgFullname?.value);
-    fetch(`/properties/${itemId}/inquiry`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        inquiry: {
-          title: inquiryMsgTitle?.value,
-          body: inquiryMsgInput?.value,
-          fullName: inquiryMsgFullname?.value,
-          email: inquiryMsgEmail?.value,
-          phoneNumber: inquiryMsgPhoneNumber?.value
-        }
-      })
-    })
-      .then(response => {
-        if (!response.ok) {
-          console.log("Network or other error");
-          // Network or other error
-          inquiryStatusDisplay.innerHTML = `
-  <div class="p-6">
-    <h5 class="mb-2 text-lg font-medium leading-tight text-red-500">
-      There was an error sending your inquiry.
-    </h5>
-  </div>
-  <div class="border-t-2 border-neutral-100 px-6 py-3 text-surface/75 dark:border-white/10 dark:text-neutral-300">
-    ${new Date().toLocaleString()}
-  </div>
-`;
-          inquiryStatusDisplay.classList.toggle('opacity-0'); inquiryStatusDisplay.classList.toggle('hidden');
-          inquiryOverlay.classList.toggle('hidden');
-          setTimeout(() => {
-            inquiryStatusDisplay.classList.toggle('opacity-0'); inquiryStatusDisplay.classList.toggle('hidden');
-            inquiryOverlay.classList.toggle('hidden');
-          }, 2000);
-        } else {
-          return response.json();
-        }
-      }).then(data => {
-        if (JSON.stringify(data) === JSON.stringify({ status: 'OK' })) {
-          inquiryStatusDisplay.classList.toggle('opacity-0'); inquiryStatusDisplay.classList.toggle('hidden');
-          inquiryOverlay.classList.toggle('hidden');
-          setTimeout(() => {
-            inquiryStatusDisplay.classList.toggle('opacity-0'); inquiryStatusDisplay.classList.toggle('hidden');
-            inquiryOverlay.classList.toggle('hidden');
-          }, 2000);
+  const shadowOverlay = document.getElementById('shadowOverlay');
+  const shadowStatusDisplay = document.getElementById('shadowStatusDisplay');
+  const addToCartForm = document.getElementById('addToCartForm');
+  // if (addToCartForm) {
+  //   addToCartForm.addEventListener('submit', (e) => {
+  //     e.preventDefault();
+  //     const formData = new FormData(addToCartForm);
+  //     fetch('/shoppingCart', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: {
+  //         itemId: formData.get('itemId'),
+  //       },  
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         if (JSON.stringify(data) === JSON.stringify({ status: 'OK' })) {
+  //           shadowStatusDisplay.classList.toggle('opacity-0'); shadowStatusDisplay.classList.toggle('hidden');
+  //           shadowOverlay.classList.toggle('hidden');
+  //           setTimeout(() => {
+  //             inquiryStatusDisplay.classList.toggle('opacity-0'); shadowStatusDisplay.classList.toggle('hidden');
+  //             shadowOverlay.classList.toggle('hidden');
+  //           }, 2000);
+  //         } else {
+  //           console.log("showPage.js err1: " + err);
+  //           shadowStatusDisplay.innerHTML = `
+  //             <div class="p-6">
+  //               <h5 class="mb-2 text-lg font-medium leading-tight text-red-500">
+  //                 There was an error performing your request.
+  //               </h5>
+  //             </div>
+  //             <div class="border-t-2 border-neutral-100 px-6 py-3 text-surface/75 dark:border-white/10 dark:text-neutral-300">
+  //               ${new Date().toLocaleString()}
+  //             </div>
+  //           `;
+  //           shadowStatusDisplay.classList.toggle('opacity-0'); shadowStatusDisplay.classList.toggle('hidden');
+  //           shadowOverlay.classList.toggle('hidden');
+  //           setTimeout(() => {
+  //             inquiryStatusDisplay.classList.toggle('opacity-0'); shadowStatusDisplay.classList.toggle('hidden');
+  //             shadowOverlay.classList.toggle('hidden');
+  //           }, 2000);
 
-        }
-      })
-      .catch(error => {
-        // Network or other error
-        inquiryStatusDisplay.innerHTML = `
-  <div class="p-6">
-    <h5 class="mb-2 text-lg font-medium leading-tight text-red-500">
-      There was an error sending your inquiry.
-    </h5>
-  </div>
-  <div class="border-t-2 border-neutral-100 px-6 py-3 text-surface/75 dark:border-white/10 dark:text-neutral-300">
-    ${new Date().toLocaleString()}
-  </div>
-`;
-        inquiryStatusDisplay.classList.toggle('opacity-0'); inquiryStatusDisplay.classList.toggle('hidden');
-        inquiryOverlay.classList.toggle('hidden');
-        setTimeout(() => {
-          inquiryStatusDisplay.classList.toggle('opacity-0'); inquiryStatusDisplay.classList.toggle('hidden');
-          inquiryOverlay.classList.toggle('hidden');
-        }, 2000);
-      });
-  });
+  //         }
+  //       })
+  //       .catch(err => {
+  //         console.log("showPage.js err2: " + err);
+  //         shadowStatusDisplay.innerHTML = `
+  //         <div class="p-6">
+  //           <h5 class="mb-2 text-lg font-medium leading-tight text-red-500">
+  //             There was an error performing your request.
+  //           </h5>
+  //         </div>
+  //         <div class="border-t-2 border-neutral-100 px-6 py-3 text-surface/75 dark:border-white/10 dark:text-neutral-300">
+  //           ${new Date().toLocaleString()}
+  //         </div>
+  //       `;
+  //         shadowStatusDisplay.classList.toggle('opacity-0'); shadowStatusDisplay.classList.toggle('hidden');
+  //         shadowOverlay.classList.toggle('hidden');
+  //         setTimeout(() => {
+  //           inquiryStatusDisplay.classList.toggle('opacity-0'); shadowStatusDisplay.classList.toggle('hidden');
+  //           shadowOverlay.classList.toggle('hidden');
+  //         }, 2000);
+  //       });
+  //   });
+  // }
 })
 

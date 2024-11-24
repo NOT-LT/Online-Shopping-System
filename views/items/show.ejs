@@ -76,16 +76,18 @@
               </div>
             </div>
             <% } else {%>
-              <div class="bg-[#12610f] rounded-full py-1 px-[10px] cursor-pointer flex flex-row text-wrap text-white justify-center items-center">
-                <span>Add to &#8203; </span>
-                <a href="/items/<%= item.id %>/edit">
+              <form id="addToCartForm" action="/shoppingCart" method="POST" class="cursor-pointer flex flex-row text-wrap text-white justify-center items-center">
+                <button class="bg-[#12610f] rounded-full py-1 px-[10px] cursor-pointer flex flex-row text-wrap text-white justify-center items-center">
+                  <span>Add to &#8203; </span>
+                  <input type="hidden" name="itemId" value="<%= item.id %>">
+                  <input type="hidden" name="itemColor" id="itemColor" value="#000000">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="#FFFFFF">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                       d="M2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3H3.21922L6.78345 17.2569C5.73276 17.7236 5 18.7762 5 20C5 21.6569 6.34315 23 8 23C9.65685 23 11 21.6569 11 20C11 19.6494 10.9398 19.3128 10.8293 19H15.1707C15.0602 19.3128 15 19.6494 15 20C15 21.6569 16.3431 23 18 23C19.6569 23 21 21.6569 21 20C21 18.3431 19.6569 17 18 17H8.78078L8.28078 15H18C20.0642 15 21.3019 13.6959 21.9887 12.2559C22.6599 10.8487 22.8935 9.16692 22.975 7.94368C23.0884 6.24014 21.6803 5 20.1211 5H5.78078L5.15951 2.51493C4.93692 1.62459 4.13696 1 3.21922 1H2ZM18 13H7.78078L6.28078 7H20.1211C20.6742 7 21.0063 7.40675 20.9794 7.81078C20.9034 8.9522 20.6906 10.3318 20.1836 11.3949C19.6922 12.4251 19.0201 13 18 13ZM18 20.9938C17.4511 20.9938 17.0062 20.5489 17.0062 20C17.0062 19.4511 17.4511 19.0062 18 19.0062C18.5489 19.0062 18.9938 19.4511 18.9938 20C18.9938 20.5489 18.5489 20.9938 18 20.9938ZM7.00617 20C7.00617 20.5489 7.45112 20.9938 8 20.9938C8.54888 20.9938 8.99383 20.5489 8.99383 20C8.99383 19.4511 8.54888 19.0062 8 19.0062C7.45112 19.0062 7.00617 19.4511 7.00617 20Z"
                       fill="#FFFFFF" />
-                  </svg>
-                </a>
-              </div>
+                  </svg>     
+                </button>           
+              </form>          
               <% } %>
         </div>
 
@@ -111,15 +113,19 @@
           <div class="flex space-x-2">
             <% item.colors.forEach((color, i)=> { %>
               <% if(i==0) { %>
-                <span class="w-6 h-6 rounded-full cursor-pointer border-2 border-black"
+                <span data-container="color" class="w-6 h-6 rounded-full cursor-pointer border-2 border-black"
                   style="background-color: <%= color %>;"
-                  onclick="this.classList.toggle('border-2'); this.classList.toggle('border-black');"></span>
-
-                <% } else { %>
-                  <span class="w-6 h-6 rounded-full cursor-pointer" style="background-color: <%= color %>;"
-                    onclick="this.classList.toggle('border-2'); this.classList.toggle('border-black');"></span>
-                  <% } %>
-                    <% }) %>
+                  onclick="document.querySelectorAll('[data-container=color]').forEach(el => el.classList.remove('border-2', 'border-black'));
+                           this.classList.add('border-2', 'border-black');
+                           document.getElementById('itemColor').value = '<%= color %>';"></span>
+              <% } else { %>
+                <span data-container="color" class="w-6 h-6 rounded-full cursor-pointer"
+                  style="background-color: <%= color %>;"
+                  onclick="document.querySelectorAll('[data-container=color]').forEach(el => el.classList.remove('border-2', 'border-black'));
+                           this.classList.add('border-2', 'border-black');
+                           document.getElementById('itemColor').value = '<%= color %>';"></span>
+              <% } %>
+            <% }) %>
           </div>
         </div>
 
@@ -209,7 +215,8 @@
 
                 </section>
 
-                <!-- Reviews Section -->
+                
+                <!-- Redesigned Reviews Section -->
                 <% function generateStars(rating) { %>
                   <% let stars = ''; %>
                   <% for (let i = 0; i < 5; i++) { %>
@@ -222,39 +229,41 @@
                   <%= stars %>
                 <% } %>
                 
-                <div class="mt-6">
-                  <h2 class="text-xl font-semibold mb-4">Reviews</h2>
+                <div class="mt-8">
+                  <h2 class="text-2xl font-semibold mb-6">Customer Reviews</h2>
                   <% if (item.reviews && item.reviews.length > 0) { %>
-                    <% item.reviews.forEach(review => { %>
-                      <div class="mb-4 p-4 border rounded-lg">
-                        <div class="flex justify-between items-center">
-                          <h3 class="font-semibold mb-1"><%= review.title %></h3>
-                          <span class="text-yellow-600"><%= generateStars(review.rating) %></span>
+                    <div class="space-y-6">
+                      <% item.reviews.forEach(review => { %>
+                        <div class="p-6 border border-gray-200 rounded-lg shadow-sm">
+                          <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold"><%= review.title %></h3>
+                            <span class="text-yellow-500"><%= generateStars(review.rating) %></span>
+                          </div>
+                          <p class="text-gray-700 mb-2"><%= review.body %></p>
+                          <p class="text-gray-500 text-sm">By <%= review.author?.username %> on <%= new Date(review.createdAt).toLocaleDateString() %></p>
                         </div>
-                        <p class="text-gray-600"><%= review.body %></p>
-                        <p class="text-gray-500 text-sm">By <%= review.author?.username %> on <%= new Date(review.createdAt).toLocaleDateString() %></p>
-                      </div>
-                    <% }) %>
+                      <% }) %>
+                    </div>
                   <% } else { %>
-                    <p class="text-gray-600">No reviews yet.</p>
+                    <p class="text-gray-600">No reviews yet. Be the first to review this item!</p>
                   <% } %>
                 </div>
 
                 <% if (currentUser) { %>
-                  <div class="mt-6">
-                    <h2 class="text-xl font-semibold mb-4">Add a Review</h2>
-                    <form action="/items/<%= item.id %>/review" method="POST" class="flex flex-col space-y-4">
+                  <div class="mt-8">
+                    <h2 class="text-2xl font-semibold mb-6">Write a Review</h2>
+                    <form action="/items/<%= item.id %>/review" method="POST" class="space-y-6">
                       <div>
-                        <label for="title" class="block text-gray-700">Title</label>
-                        <input type="text" id="title" name="review[title]" class="w-full border rounded p-2" required>
+                        <label for="title" class="block text-gray-700 font-medium mb-2">Title</label>
+                        <input type="text" id="title" name="review[title]" class="w-full border border-gray-300 rounded-lg p-3" required>
                       </div>
                       <div>
-                        <label for="body" class="block text-gray-700">Body</label>
-                        <textarea id="body" name="review[body]" class="w-full border rounded p-2" rows="4" required></textarea>
+                        <label for="body" class="block text-gray-700 font-medium mb-2">Body</label>
+                        <textarea id="body" name="review[body]" class="w-full border border-gray-300 rounded-lg p-3" rows="4" required></textarea>
                       </div>
                       <div>
-                        <label for="rating" class="block text-gray-700">Rating</label>
-                        <select id="rating" name="review[rating]" class="w-full border rounded p-2" required>
+                        <label for="rating" class="block text-gray-700 font-medium mb-2">Rating</label>
+                        <select id="rating" name="review[rating]" class="w-full border border-gray-300 rounded-lg p-3" required>
                           <option value="1">1 - Poor</option>
                           <option value="2">2 - Fair</option>
                           <option value="3">3 - Good</option>
@@ -262,11 +271,11 @@
                           <option value="5">5 - Excellent</option>
                         </select>
                       </div>
-                      <button type="submit" class="bg-blue-500 text-white rounded p-2">Submit Review</button>
+                      <button type="submit" class="w-full bg-blue-600 text-white rounded-lg p-3 font-medium">Submit Review</button>
                     </form>
                   </div>
                 <% } else { %>
-                  <p class="text-gray-600">You must be logged in to add a review.</p>
+                  <p class="text-gray-600 mt-8">You must be logged in to add a review.</p>
                 <% } %>
 
       </section>
@@ -274,12 +283,12 @@
 
 
 
-    <div id="inquiryOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
-    <div id="inquiryStatusDisplay"
+    <div id="shadowOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
+    <div id="shadowStatusDisplay"
       class="hidden z-50 fixed w-9/12 md:w-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white text-center text-surface shadow-secondary-1 transition-opacity duration-200 opacity-0">
       <div class="p-6">
         <h5 class="mb-2 text-lg font-medium leading-tight text-green-700">
-          Your inquiry is sent successfully
+          Your request is done successfully
         </h5>
       </div>
       <div class="border-t-2 border-neutral-100 px-6 py-3 text-surface/75 dark:border-white/10 dark:text-neutral-300">
@@ -304,6 +313,8 @@
         }
       }
     })();
+
+    
   </script>
 
   <script src="../../js/showPage.js"></script>

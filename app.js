@@ -55,15 +55,25 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(flash())
 
-app.use((req, res, next) => {
+app.use(asyncHandler(async (req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   res.locals.currentUser = req.user; // passport stores user info in session and we have access to it in all templates
+  if (req.isAuthenticated()) {
+    const user = await User.findById(req?.user?.id);
+    user.populate('shoppingCart');
+    await user.populate('shoppingCart.item');
+    const cartItems = user.shoppingCart;
+    res.locals.cartItems = cartItems;
+  } else {
+    res.locals.cartItems = [];
+  }
+
   if (!(res.locals.page)) {
     res.locals.page = { page: { title: '' } }
   }
   next();
-})
+}))
 
 
 app.get('/', asyncHandler(async (req, res) => {
