@@ -7,9 +7,16 @@
       <!-- Form Grid -->
       <div class="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
         <!-- Email -->
-        <div class="md:col-span-2">
+        <div>
           <label for="email" class="block text-sm font-medium text-gray-700">Your Email</label>
           <input type="email" id="email" name="email" placeholder="name@provider.com" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none 
+            focus:ring-blue-500 focus:border-blue-500 sm:text-sm invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700">
+        </div>
+        <!-- Address -->
+        <div>
+          <label for="address" class="block text-sm font-medium text-gray-700">Your Address</label>
+          <input type="email" id="address" name="address" placeholder="Area, House no., Road no." required
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none 
             focus:ring-blue-500 focus:border-blue-500 sm:text-sm invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700">
         </div>
