@@ -73,8 +73,8 @@ module.exports.postUserSettings = async (req, res, next) => {
 
 module.exports.registerUser = async (req, res, next) => {
   try {
-    const { username, email, password, fullName, phoneNumber } = req.body;
-    const user = new User({ username, email, password, fullName, phoneNumber });
+    const { username, email, password, fullName, phoneNumber, address } = req.body;
+    const user = new User({ username, email, password, fullName, phoneNumber, address });
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (err) => {
       if (err) next(err);
@@ -122,12 +122,13 @@ module.exports.getShoppingCart = async (req, res) => {
 }
 
 module.exports.addToShoppingCart = async (req, res) => {
-  const user = await User.findById(req?.user?.id);
+  const user = await User.findById(req?.user?.id).populate('shoppingCart.item');
+
   const itemId = req.body.itemId;
-  const itemColor = req.body.itemColor;
-    if (user.shoppingCart.some(item =>  {item.item == itemId && item.color == itemColor})) {
+  const itemColor = req.body.itemColorInput;
+    if (user.shoppingCart.some(item =>  {return (item.item._id == itemId && item.color == itemColor)})) {
       user.shoppingCart.forEach(item => {
-        if (item.item == itemId) {
+        if (item.item._id == itemId && item.color == itemColor) {
           item.qty += 1;
         }
       });
@@ -178,10 +179,9 @@ module.exports.deleteFromShoppingCart = async (req, res) => {
   const user = await User.findById(req?.user?.id);
   const itemId = req.body.itemId;
   const itemColor = req.body.itemColor;
-  console.log("iID:" + itemId);
   user.shoppingCart = user.shoppingCart.filter(item =>
      {
-      return item._id != itemId
+        return (item.item._id != itemId || item.color != itemColor)
      }
   );
   await user.save();

@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 const Item = require('../mongooseModels/item');
-const multer = require('multer')
-const { storage, uploadFileToCloudinary } = require('../cloudinary'); // node automaitcally looks for index.js
 const Review = require('../mongooseModels/review');
 const User = require('../mongooseModels/user');
+const { storage, uploadFileToCloudinary } = require('../cloudinary'); // node automatically looks for index.js
+
 // Database connection
-
-
 mongoose.connect('mongodb://localhost:27017/oss');
 
 const db = mongoose.connection;
@@ -18,6 +16,10 @@ db.once('open', () => {
 
 const categories = [
   'Electronics', 'Clothing', 'Furniture', 'Books', 'Games'
+];
+
+const brands = [
+  'Gazal', 'Alkahf', 'Alnassar', 'LC', 'R&B', 'Apple', 'Sony', 'Samsung'
 ];
 
 const getRandomPrice = (category, size) => {
@@ -91,17 +93,41 @@ const getRandomDiscount = () => {
     d = 50;
     return d;
   }
-
 }
 
 const seedDB = async () => {
   await Item.deleteMany({}); // Clear existing data
   await Review.deleteMany({}); // Clear existing data
+  await User.deleteMany({}); // Clear existing data
 
+  // Create 10 fake user accounts
+  const users = [];
   for (let i = 0; i < 10; i++) {
+    const user = new User({
+      username: faker.internet.userName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      shoppingCart: [],
+      orders: [],
+      phoneNumber: '37714456',
+      address: faker.address.streetAddress(),
+      isAdmin: faker.datatype.boolean(),
+      profilePicture: {
+        url: '',
+        filename: ''
+      },
+      fullName: faker.internet.userName()
+
+    });
+    await user.save();
+    users.push(user);
+  }
+
+  for (let i = 0; i < 40; i++) {
     // Generate random data for the item
     const category = faker.helpers.arrayElement(categories);
     const size = category === 'Clothing' ? ['sm', 'md', 'lg', 'xl'] : undefined;
+    const brand = faker.helpers.arrayElement(brands);
 
     // Generate images
     const Rimages = await getImages();
@@ -118,7 +144,7 @@ const seedDB = async () => {
       description: faker.lorem.paragraph(),
       postDate: new Date(),
       views: faker.number.int({ min: 0, max: 250 }),
-      colors: faker.helpers.arrayElements(['#000000', '#E5B769', '#57AFEF', '#1E2227', '#73C991', '#E06C75'], faker.number.int({ min: 1, max: 5 })),
+      colors: (category === 'Furniture' || category === 'Clothing' || category === 'Electronics') ? faker.helpers.arrayElements(['#000000', '#E5B769', '#57AFEF', '#1E2227', '#73C991', '#E06C75'], faker.number.int({ min: 1, max: 5 })) : [],
       quantity: faker.number.int({ min: 1, max: 100 }),
       sizes: size,
       width: faker.number.float({ min: 30, max: 200 }).toFixed(1),
@@ -126,10 +152,23 @@ const seedDB = async () => {
       depth: faker.number.float({ min: 30, max: 200 }).toFixed(1),
       weight: faker.number.float({ min: 1, max: 100 }).toFixed(1),
       material: faker.commerce.productMaterial(),
-      brand: faker.company.name(),
+      brand: brand,
       reviews: [],
-      discount: faker.datatype.boolean({ probability: 0.5}) ? getRandomDiscount() : 0
+      discount: faker.datatype.boolean({ probability: 0.5 }) ? getRandomDiscount() : 0
     });
+
+    // Generate reviews for the item
+    const numReviews = faker.number.int({ min: 1, max: 10 });
+    for (let j = 0; j < numReviews; j++) {
+      const review = new Review({
+        title: faker.lorem.sentence(),
+        body: faker.lorem.paragraph(),
+        rating: faker.number.int({ min: 1, max: 5 }),
+        author: faker.helpers.arrayElement(users)._id
+      });
+      await review.save();
+      item.reviews.push(review);
+    }
 
     // Save the item to the database
     await item.save();

@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+
+  const colorContainers = document.querySelectorAll('.color-container');
+
+
+
+  colorContainers.forEach(container => {
+    container.addEventListener('click', function() {
+      const input = document.querySelector('#itemColorInput');
+      colorContainers.forEach(el => el.classList.remove('border-2', 'border-black'));
+      this.classList.add('border-2', 'border-black');
+      console.log("Color: ", this.getAttribute('color-container'));
+      input.value = this.getAttribute('color-container');
+      input.dispatchEvent(new Event('input'));
+      
+      console.log(document.querySelector('#itemColorInput').value);
+    });
+  });
+ 
+
   const images = document.querySelectorAll('[id^="image"]'); // CSS Atrribute selector
   const indicators = document.querySelectorAll('[id^="indicator"]');
   let currentIndex = 0;
@@ -133,5 +152,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //       });
   //   });
   // }
+
+  
 })
 

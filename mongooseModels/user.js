@@ -24,6 +24,10 @@ const UserSchema = new Schema({
   profilePicture: {
     type: imgSchema
   },
+  address: {
+    type: String,
+    required: true
+  },
   isAdmin: {
     type: Boolean,
     default: false

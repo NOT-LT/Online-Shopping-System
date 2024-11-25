@@ -41,4 +41,5 @@ module.exports.updateUserValidationSchema = Joi.object({
   fullName: Joi.string().min(1).required(),
   phoneNumber: Joi.string(),
   profilePicture: Joi.string().optional(),
+  address: Joi.string().required(),
 }).required();

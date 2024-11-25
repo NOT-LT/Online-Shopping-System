@@ -124,6 +124,7 @@ role="menu" aria-orientation="vertical" aria-labelledby="cart-button" tabindex="
                 +
               </button>
               <input id="itemId" name="itemId" hidden type="text" value="<%= item._id %>">
+              <input id="itemColor" name="itemColor" hidden type="text" value="<%= item.color %>">
             </form>
             <!-- Remove Button -->
             <form action="/shoppingCart?_method=DELETE" method="POST" class="ml-3">
