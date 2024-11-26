@@ -30,7 +30,6 @@ const uploadFileToCloudinary = async (filePath) => {
   try {
     const uploadParams = {
       folder: 'ossItems',
-      allowedFormats: ['jpeg', 'png', 'jpg', 'gif', 'webp', 'svg'],
       timestamp: Math.floor(Date.now() / 1000), // Current timestamp
     };
 

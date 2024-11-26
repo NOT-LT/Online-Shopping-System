@@ -77,8 +77,7 @@ app.use(asyncHandler(async (req, res, next) => {
 
 
 app.get('/', asyncHandler(async (req, res) => {
-  const items = await Item.find({});
-  res.render('landing', { items, page: { title: 'landing' } })
+  res.redirect('/items');
 }))
 
 app.use('/', usersRoute);

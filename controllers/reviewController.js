@@ -5,7 +5,6 @@ const Review = require('../mongooseModels/review');
 module.exports.createReview = async (req, res) => {
   const item = await Item.findById(req.params.id);
   const review = new Review(req.body.review)
-  console.log("review:" + req.body.review);
   if(req.isAuthenticated()){
     review.author = req.user._id;
     review.fullName = req.user.fullName;
@@ -15,7 +14,8 @@ module.exports.createReview = async (req, res) => {
   item.reviews.push(review);
   await review.save();
   await item.save();
-  res.status(200).send({ status: 'OK' });
+  const previousPage = req.get('Referer');
+  res.redirect(previousPage);
 }
 
 module.exports.getReviews = async (req, res) => {

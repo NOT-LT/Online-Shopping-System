@@ -15,6 +15,11 @@ imgSchema.virtual('thumbnail1')
     return this.url.replace('/upload', '/upload/w_250');
   })
 
+  imgSchema.virtual('previewImage')
+  .get(function () {
+    return this.url.replace('/upload', '/upload/w_900/h_500');
+  })
+
 imgSchema.virtual('thumbnail2')
   .get(function () {
     return this.url.replace('/upload', '/upload/w_720');
